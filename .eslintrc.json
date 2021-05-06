@@ -1,0 +1,19 @@
+{
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es2021": true
+  },
+  "extends": ["google"],
+  "parserOptions": {
+    "ecmaVersion": 12
+  },
+  "plugins": ["@html-eslint"],
+  "overrides": [
+    {
+      "files": ["*.html"],
+      "parser": "@html-eslint/parser",
+      "extends": ["plugin:@html-eslint/recommended"]
+    }
+  ]
+}
