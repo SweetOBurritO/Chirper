@@ -9,6 +9,10 @@ app.use('/api', apiRoutes);
 
 app.use('/', express.static('app'));
 
+app.get('*', (request, response)=>{
+  response.send('Error 404 : Page not found');
+});
+
 
 app.listen(port, (error)=>{
   if (error) {
