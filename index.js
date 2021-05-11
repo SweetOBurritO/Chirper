@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const apiRoutes = require('./routes');
 
 const app = express();
@@ -7,12 +8,11 @@ const port = process.env.PORT || 3000;
 
 app.use('/api', apiRoutes);
 
-app.use('/', express.static('app'));
+app.use(express.static('app'));
 
-app.get('*', (request, response)=>{
-  response.send('Error 404 : Page not found');
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname + '/app/static/index.html'));
 });
-
 
 app.listen(port, (error)=>{
   if (error) {
