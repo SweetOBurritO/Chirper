@@ -4,16 +4,27 @@
     "commonjs": true,
     "es2021": true
   },
-  "extends": ["google"],
+  "extends": [
+    "google"
+  ],
   "parserOptions": {
     "ecmaVersion": 12
   },
-  "plugins": ["@html-eslint"],
+  "rules": {
+    "require-jsdoc": "off"
+  },
+  "plugins": [
+    "@html-eslint"
+  ],
   "overrides": [
     {
-      "files": ["*.html"],
+      "files": [
+        "*.html"
+      ],
       "parser": "@html-eslint/parser",
-      "extends": ["plugin:@html-eslint/recommended"]
+      "extends": [
+        "plugin:@html-eslint/recommended"
+      ]
     }
   ]
 }
