@@ -1,25 +1,25 @@
 const MongoClient = require('mongodb').MongoClient;
 const Constants = require('../constants');
 
-const getCollectionByFilter = async (collectionName, query)=>{
+const insertDocument = async (collectionName, document)=>{
   const client = new MongoClient(
       Constants.Database.DB_URL,
       Constants.Database.DB_SETTINGS,
   );
-  let results = null;
+
+  let result = null;
 
   try {
     const connection = await client.connect();
     const database = connection.db(Constants.Database.DB_NAME);
     const collection = await database.collection(collectionName);
-    const mongoResponse = await collection.find(query);
-    results = await mongoResponse.toArray();
+    result = await collection.insertOne(document);
   } catch (error) {
-
+    throw error;
   } finally {
     await client.close();
   }
-  return results;
+  return result;
 };
 
-module.exports = getCollectionByFilter;
+module.exports = insertDocument;
