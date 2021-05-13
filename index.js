@@ -12,8 +12,12 @@ app.use('/api', apiRoutes);
 
 app.use(express.static('app'));
 
-app.get('/*', (req, res) => {
+app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname + '/app/static/index.html'));
+});
+
+app.get('*', (req, res)=>{
+  res.send('Error:404 Page not found');
 });
 
 app.listen(port, (error)=>{
