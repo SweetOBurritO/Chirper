@@ -4,6 +4,8 @@ const {ObjectId} = require('mongodb');
 const {
   insertDocument,
   getCollectionByFilter,
+  updateDocument,
+  deleteDocument,
 } = require('../DatabaseConnection');
 
 function mapCheepsData(params) {
@@ -23,12 +25,23 @@ class CheepController {
     return result.insertedCount >= 1;
   }
 
-  async update() {
+  async update(id, updateValues) {
+    const {text, date} = updateValues;
+    const cheep = await this.getByID(id);
 
+    cheep.text = text ?? cheep.text;
+    cheep.date = date ?? cheep.date;
+
+    const result = await updateDocument('Cheeps', cheep._id, cheep);
+
+    return result.modifiedCount >= 1;
   }
 
-  async delete() {
+  async delete(id) {
+    const cheep = await this.getByID(id);
+    const result = await deleteDocument('Cheeps', {_id: cheep._id});
 
+    return result.deletedCount >= 1;
   }
 
   async get(query) {
@@ -45,7 +58,7 @@ class CheepController {
         {_id: ObjectId(id)},
     );
 
-    const cheep = cheepsRaw.map(mapCheepsData);
+    const cheep = cheepsRaw.map(mapCheepsData)[0];
     return cheep;
   }
 }
