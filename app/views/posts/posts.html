@@ -1,6 +1,11 @@
 <template id="template">
-  <article bind-for="posts">
-    <h3 for-value="heading"></h3>
-    <p for-value="message"></p>
-  </article>
+  <div bind-if="showMe">
+    <article bind-for="posts">
+      <h3 for-value="heading"></h3>
+      <p for-value="message"></p>
+    </article>
+  </div>
+  <div bind-if="dontShowMe">
+    <h2>This should not be shown</h2>
+  </div>
 </template>

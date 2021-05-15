@@ -6,6 +6,8 @@ export const Posts = View({
     title: 'Posts',
 
     data: {
+        showMe: false,
+        dontShowMe: true,
         posts : [
             {
                 heading: 'Donald J. Trump',
