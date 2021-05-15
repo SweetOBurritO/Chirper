@@ -1,19 +1,20 @@
 {
   "env": {
-    "browser": true,
-    "commonjs": true,
-    "es2021": true
+      "browser": true,
+      "es2021": true, 
+      "node": true
   },
-  "extends": ["google"],
+  "extends": "eslint:recommended",
   "parserOptions": {
-    "ecmaVersion": 12
+      "ecmaVersion": 12,
+      "sourceType": "module"
   },
-  "plugins": ["@html-eslint"],
-  "overrides": [
-    {
-      "files": ["*.html"],
-      "parser": "@html-eslint/parser",
-      "extends": ["plugin:@html-eslint/recommended"]
-    }
-  ]
+  "rules": {
+      "semi": ["error", "always"],
+      "quotes": ["error", "single"],
+      "no-trailing-spaces": "error", 
+      "no-magic-numbers": ["error", { "ignore": [0,1] }],
+      "camelcase": "error",
+      "no-console": "error"
+  }
 }
