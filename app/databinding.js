@@ -20,7 +20,6 @@ export const databinding = (bindings, domModel) => {
         {
             tag : 'bind-click',
             bind : (tag) => {
-
                 const bindMethod = (e) => {
                     if(e.target.matches(`[${tag}]`)){
                         const method = bindings._methods[e.target.getAttribute(tag)];
@@ -68,7 +67,23 @@ export const databinding = (bindings, domModel) => {
                 });
 
             }
+        },
+        {
+            tag: 'bind-if',
+            bind: (tag) => {
+                domModel.querySelectorAll(`[${tag}]`).forEach(elem => {
+                    const obs = bindings._data[elem.getAttribute(tag)];
+                    if(!obs.value){
+                        elem.remove();
+                        return;
+                    }
+
+                    elem.removeAttribute(tag);
+                });
+
+            }
         }
+
     ];
 
     const bindValue = (elem, observable) => {
@@ -81,7 +96,7 @@ export const databinding = (bindings, domModel) => {
     };
 
     const applyBindings = () => {
-        bindingTags.forEach( binding => {
+        bindingTags.forEach( (binding) => {
             binding.bind(binding.tag);
       });
     };
