@@ -1,8 +1,13 @@
 <template id="template">
+<div bind-if="showMe">  
   <article bind-for="posts">
     <a href="#" for-value="profile" data-link>
       <h3 for-value="heading"></h3>
     </a>
     <p for-value="message"></p>
   </article>
+</div>
+<div bind-if="dontShowMe">
+  <h2>This should not be shown</h2>
+</div>
 </template>

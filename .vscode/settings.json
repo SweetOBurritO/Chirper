@@ -1,9 +1,23 @@
 {
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
-  },
-  "eslint.validate": [
-    "javascript", // ...
-    "html", // Add "html" to enable linting `.html` files.
-  ],
+    "[javascript]": {
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+    },
+    "[html]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[css]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+
+    "eslint.run": "onType",
+    "eslint.runtime": "",
+    "eslint.nodeEnv": "",
+    "eslint.nodePath": "",
+    "editor.formatOnSave": true,
+    "eslint.lintTask.enable": true,
+    "eslint.format.enable": true,
+    "editor.fontSize": 16,
+    "editor.smoothScrolling": true,
+    "editor.mouseWheelZoom": true,
+    "debug.javascript.usePreview": false
 }
