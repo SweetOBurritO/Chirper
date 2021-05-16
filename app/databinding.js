@@ -18,6 +18,16 @@ export const databinding = (bindings, domModel) => {
             }
         },
         {
+            tag: 'bind-src',
+            bind: (tag) => {
+                domModel.querySelectorAll(`[${tag}]`).forEach(elem => {
+                    const obs = bindings._data[elem.getAttribute(tag)];
+                    elem.removeAttribute(tag);
+                    bindSource(elem, obs);
+                });
+            }
+        },
+        {
             tag : 'bind-click',
             bind : (tag) => {
 
@@ -47,7 +57,12 @@ export const databinding = (bindings, domModel) => {
                             const attributeValue = elem.getAttribute('for-value');
                             const obs = attributeValue ? value[attributeValue] : value ;
                             elem.removeAttribute('for-value');
-                            bindValue(elem, obs);
+
+                            if (attributeValue === 'profile') {
+                                bindLink(elem, obs);
+                            } else {
+                                bindValue(elem, obs);
+                            }
                         });
                         elem.appendChild(elemClone);
                     });
@@ -79,6 +94,24 @@ export const databinding = (bindings, domModel) => {
         elem.innerHTML = observable.value;
         observable.subscribe(() => elem.innerHTML = observable.value);
     };
+
+    const bindLink = (elem, observable) => {
+        if (observable === undefined) {
+            return;
+        }
+
+        elem.href = observable.value;
+        observable.subscribe(() => elem.href = observable.value);
+    }
+
+    const bindSource = (elem, observable) => {
+        if (observable === undefined) {
+            return;
+        }
+
+        elem.src = observable.value;
+        observable.subscribe(() => elem.src = observable.value);
+    }
 
     const applyBindings = () => {
         bindingTags.forEach( binding => {
