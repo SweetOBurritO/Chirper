@@ -56,12 +56,13 @@ export const databinding = (bindings, domModel) => {
                             const attributeValue = elem.getAttribute('for-value');
                             const obs = attributeValue ? value[attributeValue] : value ;
                             elem.removeAttribute('for-value');
-
-                            if (attributeValue === 'profile') {
-                                bindLink(elem, obs);
-                            } else {
-                                bindValue(elem, obs);
-                            }
+                            bindValue(elem, obs);
+                        });
+                        elemClone.querySelectorAll('[for-link]').forEach(elem => {
+                            const attributeValue = elem.getAttribute('for-link');
+                            const obs = attributeValue ? value[attributeValue] : value ;
+                            elem.removeAttribute('for-link');
+                            bindLink(elem, obs);
                         });
                         elem.appendChild(elemClone);
                     });
