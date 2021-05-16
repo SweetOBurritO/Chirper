@@ -22,8 +22,6 @@ export const databinding = (bindings, domModel) => {
             bind : (tag) => {
                 const bindMethod = (e) => {
                     if(e.target.matches(`[${tag}]`)){
-                        console.log(bindings);
-                        console.log(e);
                         const method = bindings._methods[e.target.getAttribute(tag)];
                         if(method !== undefined)
                             method.bind(bindings.view)(e);
