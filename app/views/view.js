@@ -44,8 +44,6 @@ export const View = (view) => {
         recursiveSetData(obj, _data);
     };
 
-    let clearEventBindings = () => {};
-
     const fetchHtml = async (path) =>{
         const response = await fetch(path);
         const html = await response.text();
@@ -54,9 +52,15 @@ export const View = (view) => {
         const template = domModel.getElementsByTagName('template')[0];
         return template.content.cloneNode(true);
     };
+
     const setTitle =  () =>{
         document.title = view.title;
     };
+
+    view.setData = setData;
+    let clearEventBindings = () => {};
+
+
 
     if(view.data !== undefined){
         setData(view.data);
@@ -68,14 +72,13 @@ export const View = (view) => {
         componentCss: [],
 
         onLoad(){
-            this.componentsCss = [];
+            this.componentCss = [];
             setTitle();
             if(view.onLoad === undefined)
                 return;
             view.onLoad();
         },
-        onExit: () => {
-
+        onExit(){
             clearEventBindings();
             if(view.onExit === undefined)
                 return;
@@ -92,7 +95,7 @@ export const View = (view) => {
 
         async getHtml(){
             const htmlDom = await fetchHtml(`/views/${view.name}/${view.name}.html`);
-            clearEventBindings =  await databinding({_data , _methods }, htmlDom, this);
+            clearEventBindings = await databinding({_data , _methods, view }, htmlDom, this);
             this.componentCss.forEach(link => htmlDom.appendChild(link));
             return htmlDom;
         },

@@ -1,7 +1,7 @@
 <template id="template">
-  <div bind-click="click" bind-if="showMe">
+  <div bind-if="showMe">
     <article bind-for="posts">
-      <h3 for-value="heading"></h3>
+      <a for-link="profile" for-value="heading" class="username" data-link></a>
       <p for-value="message"></p>
     </article>
   </div>

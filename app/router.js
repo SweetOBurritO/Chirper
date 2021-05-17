@@ -6,8 +6,10 @@ export const Router = (initialRoutes) => {
     routes[0];
     let activeRoute = {};
 
+    const pathToRegex = path => new RegExp('^' + path.replace(/\//g, '\\/').replace(/:\w+/g, '(.+)') + '$');
+
     const getMatch = () => {
-        return routes.find( route => route.path === location.pathname) || defaultRoute;
+        return routes.find( route => location.pathname.match(pathToRegex(route.path)) != null ) || defaultRoute;
     };
 
     const navigateTo = (url) => {
@@ -15,10 +17,13 @@ export const Router = (initialRoutes) => {
         routeToPath(url);
     };
 
-    const updateHtml = async (view)=> {
+    const updateHtml = async (view, route)=> {
+        if (location.pathname.match(pathToRegex(route.path)) == null) {
+            return;
+        }
 
         const newNode = await view.getHtml();
-
+        console.log(newNode);
         document.querySelector('#app').innerHTML = '';
         document.querySelector('#app').appendChild(newNode);
         document.querySelector('#view-styles').href = await view.getCssPath();
@@ -36,10 +41,11 @@ export const Router = (initialRoutes) => {
         }
         activeRoute.view && activeRoute.view.onExit();
         activeRoute = route;
-        await updateHtml(view);
-        view.onLoad.bind(view)();
 
-        if(location.pathname  !== route.path){
+        await view.onLoad.bind(view)();
+        await updateHtml(view, route);
+
+        if (location.pathname.match(pathToRegex(route.path)) == null) {
             routeToPath();
         }
     };
