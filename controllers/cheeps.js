@@ -1,64 +1,41 @@
-const Cheep = require('../models').Cheep;
-const {ObjectId} = require('mongodb');
-
-const {
-  insertDocument,
-  getCollectionByFilter,
-  updateDocument,
-  deleteDocument,
-} = require('../DatabaseConnection');
-
-function mapCheepsData(params) {
-  const {_id, text, date, username, userImageUrl} = params;
-  const cheep = new Cheep(text, date, username, userImageUrl, _id);
-  return cheep;
-}
-
+const {Cheep} = require('../models');
 
 class CheepController {
   async insert(cheep) {
-    if (!cheep instanceof Cheep) {
+    if (!(cheep instanceof Cheep)) {
       throw new Error('Not A Valid Cheep Object');
     }
-    const result = await insertDocument('Cheeps', cheep);
+    const result = await cheep.save();
 
-    return result.insertedCount >= 1;
+    return !!result;
   }
 
   async update(id, updateValues) {
-    const {text, date} = updateValues;
-    const cheep = await this.getByID(id);
+    const { title, text, date} = updateValues;
+    const cheep = await Cheep.findById(id);
 
     cheep.text = text ?? cheep.text;
     cheep.date = date ?? cheep.date;
+    cheep.title = title ?? cheep.title;
 
-    const result = await updateDocument('Cheeps', cheep._id, cheep);
+    const result = await cheep.save();
 
-    return result.modifiedCount >= 1;
+    return !!result;
   }
 
   async delete(id) {
-    const cheep = await this.getByID(id);
-    const result = await deleteDocument('Cheeps', {_id: cheep._id});
+    const result = await Cheep.deleteOne({_id:id});
 
     return result.deletedCount >= 1;
   }
 
   async get(query) {
-    const cheepsRaw = await getCollectionByFilter('Cheeps', query);
-
-    const cheeps = cheepsRaw.map(mapCheepsData);
+    const cheeps = Cheep.find(query);
     return cheeps;
   }
 
   async getByID(id) {
-    const cheepsRaw = await getCollectionByFilter(
-        'Cheeps',
-        // eslint-disable-next-line new-cap
-        {_id: ObjectId(id)},
-    );
-
-    const cheep = cheepsRaw.map(mapCheepsData)[0];
+    const cheep = Cheep.findById(id);
     return cheep;
   }
 }
