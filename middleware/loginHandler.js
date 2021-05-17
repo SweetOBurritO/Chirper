@@ -1,6 +1,12 @@
+const authFreeRoutes = [
+	'/login',
+	'/register',
+	'/'
+];
+
 const loginHandler = (req, res, next) => {
 	const endpoint = req.originalUrl;
-	const isLoginUrl = endpoint === '/login';
+	const isLoginUrl = authFreeRoutes.includes(endpoint);
 	const isAuthRoute = endpoint.startsWith('/api/auth');
 
 	if (isLoginUrl || isAuthRoute) {

@@ -31,6 +31,10 @@ const App = async () => {
 		{
 			path: '/login',
 			view: Login
+        },
+        {
+			path: '/register',
+			view: Login
 		}
 	];
 

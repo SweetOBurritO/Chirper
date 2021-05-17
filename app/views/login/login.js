@@ -6,6 +6,17 @@ export const Login = View({
     title: 'Login',
 
     data: {
-        heading: 'Log In'
+        title: ''
     },
+    onLoad : ()=>{
+        let title = 'Log in';
+
+        if (location.pathname ==='/register') {
+            title = 'Register';
+        }
+
+        Login.setData({
+            title:title
+        });
+    }
 });
