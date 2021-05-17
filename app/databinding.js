@@ -1,4 +1,4 @@
-export const databinding = async (bindings, domModel) => {
+export const databinding = async (bindings, domModel, view) => {
     const eventBindings = [];
     const clearEventBindings = () => {
         eventBindings.forEach(eventArgs => {
@@ -57,8 +57,8 @@ export const databinding = async (bindings, domModel) => {
             tag: 'bind-view',
             bind: (tag) => {
                 domModel.querySelectorAll(`[${tag}]`).forEach(elem => {
-                    const view = bindings._data[elem.getAttribute(tag)];
-                    view.getHtml.value()
+                    const boundView = bindings._data[elem.getAttribute(tag)];
+                    boundView.getHtml.value()
                     .then((res)=> {
                         elem.innerHTML = '';
                         elem.removeAttribute(tag);
@@ -89,9 +89,12 @@ export const databinding = async (bindings, domModel) => {
                 domModel.querySelectorAll(`[${tag}]`).forEach(elem => {
                     const component = bindings._data[elem.getAttribute(tag)];
                     const propList = bindings._data[elem.getAttribute('bind-props-list')];
+                    const props = bindings._data[elem.getAttribute('bind-props')];
+                    component.getCss.value.call(component).then((res)=> {
+                        view.componentCss.push(res);
+                    });
                     if(propList === undefined || propList === null)
                     {
-                        const props = bindings._data[elem.getAttribute('bind-props')];
                         component.getHtml.value(props)
                         .then((res)=> {
                             elem.innerHTML = '';

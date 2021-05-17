@@ -65,8 +65,10 @@ export const View = (view) => {
     return {
         fetchHtml: fetchHtml,
         setData: setData,
+        componentCss: [],
 
-        onLoad: () => {
+        onLoad(){
+            this.componentsCss = [];
             setTitle();
             if(view.onLoad === undefined)
                 return;
@@ -88,9 +90,10 @@ export const View = (view) => {
             return _methods;
         },
 
-        getHtml: async () => {
+        async getHtml(){
             const htmlDom = await fetchHtml(`/views/${view.name}/${view.name}.html`);
-            clearEventBindings =  await databinding({_data , _methods }, htmlDom);
+            clearEventBindings =  await databinding({_data , _methods }, htmlDom, this);
+            this.componentCss.forEach(link => htmlDom.appendChild(link));
             return htmlDom;
         },
         getCssPath: async () => {

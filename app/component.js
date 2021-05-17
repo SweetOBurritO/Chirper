@@ -31,6 +31,13 @@ export const Component = (obj) => {
             const cssPath = `/components/${obj.name}/${obj.name}.css`;
             return cssPath;
         },
+        async getCss(){
+            const link = document.createElement( 'link' );
+            link.href = await this.getCssPath.value();
+            link.type = 'text/css';
+            link.rel = 'stylesheet';
+            return(link);
+        },
         onExit: () => {
 
             clearPropEvents();

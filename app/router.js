@@ -37,7 +37,7 @@ export const Router = (initialRoutes) => {
         activeRoute.view && activeRoute.view.onExit();
         activeRoute = route;
         await updateHtml(view);
-        view.onLoad();
+        view.onLoad.bind(view)();
 
         if(location.pathname  !== route.path){
             routeToPath();

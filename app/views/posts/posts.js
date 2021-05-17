@@ -6,7 +6,7 @@ export const Posts = View({
     title: 'Posts',
 
     data: {
-        showMe: false,
+        showMe: true,
         dontShowMe: true,
         posts : [
             {
@@ -22,6 +22,6 @@ export const Posts = View({
                 message: 'Despite the constant negative press covfefe'
             }
         ]
-    },
+    }
 
 });
