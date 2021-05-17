@@ -68,7 +68,7 @@ export const View = (view) => {
     }
 
     return {
-
+        setData: setData,
         onLoad(){
             setTitle();
             if(view.onLoad === undefined)

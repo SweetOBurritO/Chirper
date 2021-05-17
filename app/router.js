@@ -6,8 +6,10 @@ export const Router = (initialRoutes) => {
     routes[0];
     let activeRoute = {};
 
+    const pathToRegex = path => new RegExp("^" + path.replace(/\//g, "\\/").replace(/:\w+/g, "(.+)") + "$");
+
     const getMatch = () => {
-        return routes.find( route => route.path === location.pathname) || defaultRoute;
+        return routes.find( route => location.pathname.match(pathToRegex(route.path)) != null ) || defaultRoute;
     };
 
     const navigateTo = (url) => {
@@ -16,7 +18,7 @@ export const Router = (initialRoutes) => {
     };
 
     const updateHtml = async (view, route)=> {
-        if(location.pathname  !== route.path){
+        if (location.pathname.match(pathToRegex(route.path)) == null) {
             return;
         }
 
@@ -39,11 +41,11 @@ export const Router = (initialRoutes) => {
         }
         activeRoute.view && activeRoute.view.onExit();
         activeRoute = route;
+
         await view.onLoad();
         await updateHtml(view, route);
 
-
-        if(location.pathname  !== route.path){
+        if (location.pathname.match(pathToRegex(route.path)) == null) {
             routeToPath();
         }
     };
