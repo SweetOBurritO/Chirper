@@ -88,17 +88,31 @@ export const databinding = async (bindings, domModel) => {
             bind: (tag) => {
                 domModel.querySelectorAll(`[${tag}]`).forEach(elem => {
                     const component = bindings._data[elem.getAttribute(tag)];
-                    const props = bindings._data[elem.getAttribute('bind-props')];
-                    component.getHtml.value(props)
-                    .then((res)=> {
-                        elem.innerHTML = '';
-                        elem.removeAttribute(tag);
-                        elem.appendChild(res);
+                    const propList = bindings._data[elem.getAttribute('bind-props-list')];
+                    if(propList === undefined || propList === null)
+                    {
+                        const props = bindings._data[elem.getAttribute('bind-props')];
+                        component.getHtml.value(props)
+                        .then((res)=> {
+                            elem.innerHTML = '';
+                            elem.removeAttribute(tag);
+                            elem.removeAttribute('bind-props');
+                            elem.appendChild(res);
+                        });
+                        return;
+                    }
+
+                    elem.removeAttribute('bind-props-list');
+                    propList.forEach( propItem => {
+                        component.getHtml.value(propItem)
+                        .then((res)=> {
+                            elem.appendChild(res);
+                        });
                     });
                 });
 
             }
-        },
+        }
 
     ];
 
