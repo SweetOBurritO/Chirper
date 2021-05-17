@@ -20,6 +20,11 @@ passport.deserializeUser(function(user, done) {
 router.use('/google', googleAuthRoutes);
 router.use('/twitter', twitterAuthRoutes);
 
+router.get('/logout', (req, res)=>{
+	req.session.destroy();
+	res.redirect('/');
+});
+
 router.use('*', (req, res) => {
 	const notFoundMessage = 'Invalid Endpoint';
 	const response = new Response(statusCodes.notFound, notFoundMessage, notFoundMessage);
