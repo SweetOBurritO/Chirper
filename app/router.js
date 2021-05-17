@@ -18,7 +18,7 @@ export const Router = (initialRoutes) => {
     };
 
     const updateHtml = async (view, route)=> {
-        if(location.pathname  !== route.path){
+        if (location.pathname.match(pathToRegex(route.path)) == null) {
             return;
         }
 
