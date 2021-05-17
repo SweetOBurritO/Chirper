@@ -20,8 +20,10 @@ export const Landing = View({
 
     methods: {
         signUp(){
-            this.router.navigateTo('/home');
-            window.loggedIn =true;
+            this.router.navigateTo('/register');
+        },
+        logIn(){
+            this.router.navigateTo('/login');
         }
     }
 

@@ -99,8 +99,5 @@ export const View = (view) => {
             const cssPath = `/views/${view.name}/${view.name}.css`;
             return cssPath;
         }
-
-
     };
-
 };
