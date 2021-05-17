@@ -1,4 +1,4 @@
-export const databinding = (bindings, domModel) => {
+export const databinding = async (bindings, domModel) => {
     const eventBindings = [];
     const clearEventBindings = () => {
         eventBindings.forEach(eventArgs => {
@@ -7,29 +7,6 @@ export const databinding = (bindings, domModel) => {
     };
 
     const bindingTags = [
-        {
-            tag: 'bind-content',
-            bind: (tag) => {
-                domModel.querySelectorAll(`[${tag}]`).forEach(elem => {
-                    const obs = bindings._data[elem.getAttribute(tag)];
-                    elem.removeAttribute(tag);
-                    bindValue(elem, obs);
-                });
-            }
-        },
-        {
-            tag : 'bind-click',
-            bind : (tag) => {
-                const bindMethod = (e) => {
-                    if(e.target.matches(`[${tag}]`)){
-                        const method = bindings._methods[e.target.getAttribute(tag)];
-                        method(e);
-                    }
-                };
-                document.body.addEventListener('click', bindMethod);
-                eventBindings.push( ['click', bindMethod] );
-            }
-        },
         {
             tag: 'bind-for',
             bind: (tag) => {
@@ -51,6 +28,29 @@ export const databinding = (bindings, domModel) => {
                         elem.appendChild(elemClone);
                     });
                 });
+            }
+        },
+        {
+            tag: 'bind-content',
+            bind: (tag) => {
+                domModel.querySelectorAll(`[${tag}]`).forEach(elem => {
+                    const obs = bindings._data[elem.getAttribute(tag)];
+                    elem.removeAttribute(tag);
+                    bindValue(elem, obs);
+                });
+            }
+        },
+        {
+            tag : 'bind-click',
+            bind : (tag) => {
+                const bindMethod = (e) => {
+                    if(e.target.matches(`[${tag}]`)){
+                        const method = bindings._methods[e.target.getAttribute(tag)];
+                        method(e);
+                    }
+                };
+                document.body.addEventListener('click', bindMethod);
+                eventBindings.push( ['click', bindMethod] );
             }
         },
         {
@@ -82,7 +82,23 @@ export const databinding = (bindings, domModel) => {
                 });
 
             }
-        }
+        },
+        {
+            tag: 'bind-component',
+            bind: (tag) => {
+                domModel.querySelectorAll(`[${tag}]`).forEach(elem => {
+                    const component = bindings._data[elem.getAttribute(tag)];
+                    const props = bindings._data[elem.getAttribute('bind-props')];
+                    component.getHtml.value(props)
+                    .then((res)=> {
+                        elem.innerHTML = '';
+                        elem.removeAttribute(tag);
+                        elem.appendChild(res);
+                    });
+                });
+
+            }
+        },
 
     ];
 
@@ -95,13 +111,13 @@ export const databinding = (bindings, domModel) => {
         observable.subscribe(() => elem.innerHTML = observable.value);
     };
 
-    const applyBindings = () => {
+    const applyBindings = async () => {
         bindingTags.forEach( (binding) => {
             binding.bind(binding.tag);
       });
     };
 
-    applyBindings();
+    await applyBindings();
 
     return clearEventBindings;
 };
