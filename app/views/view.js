@@ -44,8 +44,6 @@ export const View = (view) => {
         recursiveSetData(obj, _data);
     };
 
-    let clearEventBindings = () => {};
-
     const fetchHtml = async (path) =>{
         const response = await fetch(path);
         const html = await response.text();
@@ -55,25 +53,29 @@ export const View = (view) => {
         return template.content.cloneNode(true);
 
     };
+
     const setTitle =  () =>{
         document.title = view.title;
     };
+
+    view.setData = setData;
+    let clearEventBindings = () => {};
+
+
 
     if(view.data !== undefined){
         setData(view.data);
     }
 
     return {
-        setData: setData,
 
-        onLoad: () => {
+        onLoad(){
             setTitle();
             if(view.onLoad === undefined)
                 return;
             view.onLoad();
         },
-        onExit: () => {
-
+        onExit(){
             clearEventBindings();
             if(view.onExit === undefined)
                 return;
@@ -88,9 +90,9 @@ export const View = (view) => {
             return _methods;
         },
 
-         getHtml: async () => {
+        getHtml: async () => {
             const htmlDom = await fetchHtml(`/views/${view.name}/${view.name}.html`);
-            clearEventBindings = databinding({_data , _methods }, htmlDom);
+            clearEventBindings = databinding({_data , _methods, view }, htmlDom);
             return htmlDom;
         },
         getCssPath: async () => {
