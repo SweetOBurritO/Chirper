@@ -1,0 +1,13 @@
+.main-container {
+  width: 50vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin-left: 2vh;
+}
+
+.profileImage {
+  border-radius: 50%;
+  max-width: 200px;
+  max-height: 200px;
+}
