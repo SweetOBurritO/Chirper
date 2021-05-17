@@ -6,7 +6,7 @@ export const Posts = View({
     title: 'Posts',
 
     data: {
-        showMe: false,
+        showMe: true,
         dontShowMe: true,
         posts : [
             {

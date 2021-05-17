@@ -15,7 +15,10 @@ export const Router = (initialRoutes) => {
         routeToPath(url);
     };
 
-    const updateHtml = async (view)=> {
+    const updateHtml = async (view, route)=> {
+        if(location.pathname  !== route.path){
+            return;
+        }
 
         const newNode = await view.getHtml();
 
@@ -36,8 +39,9 @@ export const Router = (initialRoutes) => {
         }
         activeRoute.view && activeRoute.view.onExit();
         activeRoute = route;
-        await updateHtml(view);
-        view.onLoad();
+        await view.onLoad();
+        await updateHtml(view, route);
+
 
         if(location.pathname  !== route.path){
             routeToPath();

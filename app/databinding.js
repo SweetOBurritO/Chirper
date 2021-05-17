@@ -23,7 +23,8 @@ export const databinding = (bindings, domModel) => {
                 const bindMethod = (e) => {
                     if(e.target.matches(`[${tag}]`)){
                         const method = bindings._methods[e.target.getAttribute(tag)];
-                        method(e);
+                        if(method !== undefined)
+                            method.bind(bindings.view)(e);
                     }
                 };
                 document.body.addEventListener('click', bindMethod);
