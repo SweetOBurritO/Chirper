@@ -1,7 +1,9 @@
 const Cheep = require('./Cheep');
 const Response = require('./Response');
+const User = require('./User');
 
 module.exports = {
-  Cheep,
-  Response,
+	Cheep,
+	Response,
+	User
 };
