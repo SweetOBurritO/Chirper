@@ -1,0 +1,16 @@
+<template id="template">
+  <main class="main-container">
+    <h1>PROFILE</h1>
+    <img src="" class="profileImage" bind-src="profileImage"/>
+    <h1 bind-content="username"></h3>
+    <h3 bind-content="userTag"></h3>
+    <h3 bind-content="dateOfBirth"></h3>
+    <h3 bind-content="location"></h3>
+    <h3 bind-content="userBio"></h3>
+
+    <article bind-for="cheeps">
+      <h3 bind-content="username"></h3>
+      <pre for-value="message"></pre>
+    </article>
+  </main>
+</template>

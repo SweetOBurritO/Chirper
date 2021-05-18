@@ -1,0 +1,146 @@
+{
+	"info": {
+		"_postman_id": "4b8dce0d-2832-4fa2-802b-fc5a2f4c1a99",
+		"name": "Chirper",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get All Cheeps",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/cheeps",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"cheeps"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Cheep by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/cheeps/609c26d25c88a431acfaf8d9",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"cheeps",
+						"609c26d25c88a431acfaf8d9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Insert Cheep",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "text",
+							"value": "Who needs twitter anyways! TWITTER IS FAKE NEWS",
+							"type": "text"
+						},
+						{
+							"key": "date",
+							"value": "2021-01-30",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "@DonaldTrump",
+							"type": "text"
+						},
+						{
+							"key": "userImageUrl",
+							"value": "https://graphics.wsj.com/clinton-trump-twitter/img/trump.jpg",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/cheeps/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"cheeps",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Cheep",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/cheeps/23",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"cheeps",
+						"23"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Cheep",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/cheeps/23",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"cheeps",
+						"23"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

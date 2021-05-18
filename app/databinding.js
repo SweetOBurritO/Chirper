@@ -18,13 +18,23 @@ export const databinding = (bindings, domModel) => {
             }
         },
         {
+            tag: 'bind-src',
+            bind: (tag) => {
+                domModel.querySelectorAll(`[${tag}]`).forEach(elem => {
+                    const obs = bindings._data[elem.getAttribute(tag)];
+                    elem.removeAttribute(tag);
+                    bindSource(elem, obs);
+                });
+            }
+        },
+        {
             tag : 'bind-click',
             bind : (tag) => {
-
                 const bindMethod = (e) => {
                     if(e.target.matches(`[${tag}]`)){
                         const method = bindings._methods[e.target.getAttribute(tag)];
-                        method(e);
+                        if(method !== undefined)
+                            method.bind(bindings.view)(e);
                     }
                 };
                 document.body.addEventListener('click', bindMethod);
@@ -49,6 +59,12 @@ export const databinding = (bindings, domModel) => {
                             elem.removeAttribute('for-value');
                             bindValue(elem, obs);
                         });
+                        elemClone.querySelectorAll('[for-link]').forEach(elem => {
+                            const attributeValue = elem.getAttribute('for-link');
+                            const obs = attributeValue ? value[attributeValue] : value ;
+                            elem.removeAttribute('for-link');
+                            bindLink(elem, obs);
+                        });
                         elem.appendChild(elemClone);
                     });
                 });
@@ -68,7 +84,23 @@ export const databinding = (bindings, domModel) => {
                 });
 
             }
+        },
+        {
+            tag: 'bind-if',
+            bind: (tag) => {
+                domModel.querySelectorAll(`[${tag}]`).forEach(elem => {
+                    const obs = bindings._data[elem.getAttribute(tag)];
+                    if(!obs.value){
+                        elem.remove();
+                        return;
+                    }
+
+                    elem.removeAttribute(tag);
+                });
+
+            }
         }
+
     ];
 
     const bindValue = (elem, observable) => {
@@ -80,8 +112,26 @@ export const databinding = (bindings, domModel) => {
         observable.subscribe(() => elem.innerHTML = observable.value);
     };
 
+    const bindLink = (elem, observable) => {
+        if (observable === undefined) {
+            return;
+        }
+
+        elem.href = observable.value;
+        observable.subscribe(() => elem.href = observable.value);
+    }
+
+    const bindSource = (elem, observable) => {
+        if (observable === undefined) {
+            return;
+        }
+
+        elem.src = observable.value;
+        observable.subscribe(() => elem.src = observable.value);
+    }
+
     const applyBindings = () => {
-        bindingTags.forEach( binding => {
+        bindingTags.forEach( (binding) => {
             binding.bind(binding.tag);
       });
     };

@@ -1,14 +1,20 @@
 const express = require('express');
+const cheeps = require('./cheeps');
+const auth = require('./auth');
+const { statusCodes } = require('../constants');
+const { Response } = require('../models');
+
 const router = new express.Router();
 
-router.get('/', async (request, response) => {
-  response.status(200);
-  response.send(`Hello API ${process.env.NODE_ENV}`);
-});
+router.use('/auth', auth);
+router.use('/cheeps', cheeps);
 
-router.get('*', (request, response) => {
-  response.status(400);
-  response.send('Invalid Endpoint');
+router.get('*', (req, res) => {
+	const notFoundMessage = 'Invalid Endpoint';
+	const response = new Response(statusCodes.notFound, notFoundMessage, notFoundMessage);
+
+	res.status(statusCodes.notFound);
+	res.send(response);
 });
 
 module.exports = router;

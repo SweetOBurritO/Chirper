@@ -1,24 +1,40 @@
 const express = require('express');
 const path = require('path');
-const apiRoutes = require('./routes');
+const bodyParser = require('body-parser');
+
+const session = require('express-session');
+const mongoose = require('mongoose');
+const middleware = require('./middleware');
+
+if (process.env.NODE_ENV !== 'production') {
+	const dotenv = require('dotenv');
+	dotenv.config();
+}
+
+mongoose.connect(process.env.DB_URL, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
 
 const app = express();
-const port = process.env.PORT || 3000;
+const devPort = 3000;
+const port = process.env.PORT || devPort;
+const sessionSecret = process.env.SESSION_SECRET;
+const apiRoutes = require('./routes');
 
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(session({ secret: sessionSecret, resave: true, saveUninitialized: false }));
+app.use(express.static('app'));
+app.use(middleware.loginHandler);
 
 app.use('/api', apiRoutes);
 
-app.use(express.static('app'));
-
 app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname + '/app/static/index.html'));
+	res.sendFile(path.join(__dirname + '/app/static/index.html'));
 });
 
-app.listen(port, (error)=>{
-  if (error) {
-    console.error('Server failed to start:');
-    console.error(error);
-  }
+app.listen(port, (error) => {
+	if (error) {
+		throw error;
+	}
 
-  console.log(`Server running on port : ${port}`);
+	// eslint-disable-next-line no-console
+	console.log(`Server running on port : ${port}`);
 });

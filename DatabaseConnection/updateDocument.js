@@ -1,25 +1,31 @@
 const MongoClient = require('mongodb').MongoClient;
 const Constants = require('../constants');
 
-const getCollectionByFilter = async (collectionName, query)=>{
+const updateDocument = async (collectionName, id, document)=>{
   const client = new MongoClient(
       Constants.Database.DB_URL,
       Constants.Database.DB_SETTINGS,
   );
-  let results = null;
+
+  let result = null;
 
   try {
     const connection = await client.connect();
     const database = connection.db(Constants.Database.DB_NAME);
     const collection = await database.collection(collectionName);
-    const mongoResponse = await collection.find(query);
-    results = await mongoResponse.toArray();
+    const options = {'upsert': false};
+    const update = {
+      $set: {
+        ...document,
+      },
+    };
+    result = await collection.updateOne({_id: id}, update, options);
   } catch (error) {
-
+    throw error;
   } finally {
     await client.close();
   }
-  return results;
+  return result;
 };
 
-module.exports = getCollectionByFilter;
+module.exports = updateDocument;
