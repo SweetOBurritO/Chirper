@@ -1,35 +1,42 @@
 <template id="template">
-  <section class="background">
-    <picture>
-      <img
-        class="background-curve"
-        alt="background curve"
-        src="/static/images/landing-background-curve.svg"
-      />
-    </picture>
-    <picture>
-      <img
-        class="landing-page-logo"
-        alt="chirper logo grey"
-        src="/static/images/logo-landing-grey.svg"
-      />
-    </picture>
-  </section>
-  <header>
-    <section class="heading-text-container">
+  <section class="landing-page-container">
+    <header>
       <h1 class="heading-text">Chirper</h1>
-      <h2 class="sub-heading-text">Where its at</h2>
+      <section class="login-container">
+        <h2 bind-click="signUp" class="sign-up-text" bind-click="signUp">
+          Register
+        </h2>
+        <h2 bind-click="signUp" class="login-text" bind-click="logIn">Login</h2>
+      </section>
+
+      <section class="heading-text-container">
+        <h2 class="sub-heading-text">Where it's at</h2>
+      </section>
+    </header>
+
+    <section class="background">
+      <picture>
+        <img
+          class="background-curve"
+          alt="background curve"
+          src="/static/images/landing-background-curve.svg"
+        />
+      </picture>
+      <picture>
+        <img
+          class="landing-page-logo"
+          alt="chirper logo grey"
+          src="/static/images/logo-landing-grey.svg"
+        />
+      </picture>
     </section>
-    <section class="login-container">
-      <h2 bind-click="signUp" class="sign-up-text">Register</h2>
-      <h2 bind-click="signUp" class="login-text">Login</h2>
+
+    <section class="landing-content">
+      <section class="call-to-action">
+        <h1>Want to know what is happening???</h1>
+        <p>Sign up now to find out!</p>
+        <button class="button-outline" bind-click="signUp">Register</button>
+      </section>
     </section>
-  </header>
-  <article class="landing-content">
-    <section class="call-to-action">
-      <h1>Want to know what is happening???</h1>
-      <p>Sign up now to find out!</p>
-      <button class="button-outline" bind-click="signUp">Register</button>
-    </section>
-  </article>
+  </section>
 </template>
