@@ -10,4 +10,5 @@
 body {
   background-color: var(--background);
   font-family: "Roboto", sans-serif;
+  overflow: hidden;
 }
