@@ -1,10 +1,6 @@
-section {
-  display: flex;
-}
-
 .main-container {
-  padding: 50px 75px;
-  width: 40%;
+  padding: 50px 20px;
+  width: 45%;
   height: 80%;
 
   position: absolute;
@@ -148,7 +144,22 @@ section {
   color: #000000;
 }
 
+#cheepFeedHeader {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 36px;
+  line-height: 42px;
+
+  color: #FF476F;
+
+  position: absolute;
+  top: 335px;
+  left: 35%
+}
+
 #cheepsFeed {
-  margin-top: 200px;
+  margin-top: 300px;
+  padding-top: 60px;
   border-top: 2px solid #C4C4C4;
 }

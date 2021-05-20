@@ -40,8 +40,6 @@
   font-weight: bold;
   font-size: 36px;
   line-height: 42px;
-  display: flex;
-  align-items: center;
 
   color: #000000;
 }
@@ -52,6 +50,4 @@
   font-weight: normal;
   font-size: 18px;
   line-height: 27px;
-  display: flex;
-  align-items: center;
 }
