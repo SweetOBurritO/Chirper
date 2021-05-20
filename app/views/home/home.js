@@ -1,7 +1,7 @@
 import { Cheep } from '../../components/cheep/cheep.js';
 import {View} from '../view.js';
 
-
+let incr = 0;
 export const Home = View({
     name: 'home',
     title: 'Home',
@@ -9,24 +9,16 @@ export const Home = View({
 
     data: {
         cheep: Cheep,
-        props: [
-            {
+        props:  {
                 handle: '@realDonaldTrump',
                 heading: 'My Button is Bigger than Yours',
-                body: 'North Korean'
-            },
-            {
-                handle: '@realDonaldTrump',
-                heading: 'Nominate Me!',
-                body: 'Lowest rated Oscars in HISTORY. Problem is, we don\'t have Stars anymore - except your President (just kidding, of course)!'
-            },
-            {
-                handle: '@realDonaldTrump',
-                heading: 'Nominate Me!',
-                body: 'Lowest rated Oscars in HISTORY. Problem is, we don\'t have Stars anymore - except your President (just kidding, of course)!'
+                body: 'North Korean',
             }
-        ]
 
     },
+    methods:{
+        onClicked: ()=>{
+        }
+    }
 
 });
