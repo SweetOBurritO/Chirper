@@ -1,8 +1,8 @@
 <template id="template">
   <article>
-    <header class="cheep-header">
+    <header bind-click="onClicked" class="cheep-header">
       <img />
-      <section bind-click="onClick">
+      <section>
         <p bind-content="handle"></p>
         <h1 bind-content="heading"></h1>
       </section>

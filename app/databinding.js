@@ -61,7 +61,11 @@ export const databinding = async (bindings, domModel, view) => {
             tag : 'bind-click',
             bind : async (tag) => {
                 const bindMethod = (e) => {
+                    if(e.target)
                     if(e.target.matches(`[${tag}]`)){
+                        if(!bindings || !bindings._methods){
+                            return;
+                        }
                         const method = bindings._methods[e.target.getAttribute(tag)];
                         if(method !== undefined)
                             method.bind(bindings.view)(e);
