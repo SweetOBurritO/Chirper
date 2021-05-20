@@ -22,8 +22,7 @@ const apiRoutes = require('./routes');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(session({ secret: sessionSecret, resave: true, saveUninitialized: false }));
-app.use(express.static('app'));
-app.use(middleware.loginHandler);
+app.use(express.static('app')); app.use(middleware.loginHandler);
 
 app.use('/api', apiRoutes);
 

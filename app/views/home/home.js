@@ -12,27 +12,33 @@ export const Home = View({
         cheep: Cheep,
         trends: Trends,
         promptCheep: 'Cheep, Cheep!',
-        props: [
-            {
-                profileImage: 'https://picsum.photos/id/23/200',
-                handle: '@realDonaldTrump',
-                heading: 'My Button is Bigger than Yours',
-                body: 'North Korean'
-            },
-            {
-                profileImage: 'https://picsum.photos/id/23/200',
-                handle: '@realDonaldTrump',
-                heading: 'Nominate Me!',
-                body: 'Lowest rated Oscars in HISTORY. Problem is, we don\'t have Stars anymore - except your President (just kidding, of course)!'
-            },
-            {
-                profileImage: 'https://picsum.photos/id/23/200',
-                handle: '@realDonaldTrump',
-                heading: 'Nominate Me!',
-                body: 'Lowest rated Oscars in HISTORY. Problem is, we don\'t have Stars anymore - except your President (just kidding, of course)!'
-            }
-        ]
-
+        props: []
     },
+
+    async onLoad(){
+        const response = await fetch('/api/cheeps');
+        const json = await response.json();
+        const cheepsRaw = json.data.result;
+        const cheeps = [];
+
+        cheepsRaw.forEach(element => {
+            const cheep = {
+                imageSrc: element.userProfileImage,
+                handle: element.username,
+                heading: element.title,
+                body: element.text
+            };
+            cheeps.push(cheep);
+        });
+
+        Home.setData({
+            props:cheeps
+        });
+
+        const router = window.getRouter();
+
+        router.updateHtml(Home, {path:'/home'});
+
+    }
 
 });
