@@ -20,19 +20,6 @@ section {
   overflow: scroll;
 }
 
-.trending-container {
-  min-width: 15vw;
-  max-width: 30vw;
-  max-height: 50%;
-
-  position: absolute;
-  right: 1vw;
-  top: 20vh;
-  background: #E4E4E4;
-  border-radius: 15px;
-  padding: 0 20px 35px;
-}
-
 .profileImage {
   border-radius: 20%;
   width: 150px;
