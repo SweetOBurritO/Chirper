@@ -1,4 +1,57 @@
 .cheep-header {
   width: 50vw;
-  background-color: lawngreen;
+}
+
+.profileImage {
+  position: absolute;
+  float: left;
+  padding: 10px;
+  border-radius: 50%;
+  width: 75px;
+  height: 75px;
+}
+
+.chirp-content {
+  margin: 10px 0;
+  padding: 5px 0;
+  background: #FFFFFF;
+  border-radius: 20px;
+}
+
+.cheep-text {
+  padding-left: 100px;
+}
+
+.cheep-by-handle {
+  color: #1DA1F2;
+}
+
+.cheep-by-handle:hover {
+  color: #1DA1F2;
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.cheep-heading {
+  padding: 0;
+  margin: 0;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 36px;
+  line-height: 42px;
+  display: flex;
+  align-items: center;
+
+  color: #000000;
+}
+
+.main-cheep-text {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 27px;
+  display: flex;
+  align-items: center;
 }

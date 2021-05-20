@@ -1,14 +1,14 @@
 <template id="template">
-  <article>
+  <article class="chirp-content">
+    <img src="" class="profileImage" bind-src="profileImage"/>
     <header class="cheep-header">
-      <img />
-      <section bind-click="onClick">
-        <p bind-content="handle"></p>
-        <h1 bind-content="heading"></h1>
+      <section class="cheep-text" bind-click="onClick">
+        <p class="cheep-by-handle" bind-content="handle"></p>
+        <h1 class="cheep-heading" bind-content="heading"></h1>
       </section>
     </header>
-    <section>
-      <p bind-content="body"></p>
+    <section class="cheep-text">
+      <p class="main-cheep-text" bind-content="body"></p>
     </section>
   </article>
 </template>
