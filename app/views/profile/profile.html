@@ -15,11 +15,15 @@
       <h3 id="userBio" bind-content="userBio"></h3>
 
       <section id="follow-info">
-        <h3 class="count-info-key class-info">Followers</h3>
-        <h3 class="count-info-value class-info" bind-content="followerCount"></h3>
-
-        <h3 class="count-info-key class-info">Following</h3>
-        <h3 class="count-info-value class-info" bind-content="followingCount"></h3>
+        <span class="follow-info">
+          <span class="count-info-key count-info">Followers</span>
+          <span class="count-info-value count-info" bind-content="followerCount"></span>
+        </span>
+        <span class="follow-spacer"></span>
+        <span class="follow-info">
+          <span class="count-info-key count-info">Following</span>
+          <span class="count-info-value count-info" bind-content="followingCount"></span>
+        </span>
       </section>
 
       <section id="cheepsFeed">
@@ -29,6 +33,14 @@
         </article>
       </section>
     </main>
+
+    <aside class="trending-container">
+      <h1 id="trendingTitle">Trending Now</h1>
+      <article class="trending-tags" bind-for="trends">
+        <span class="hashTag" for-value="hashTag"></span>
+      </article>
+      <button id="show-more-trends">Show more</button>
+    </aside>
 
   </section>
 </template>

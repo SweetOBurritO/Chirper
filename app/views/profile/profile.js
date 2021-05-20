@@ -73,6 +73,27 @@ export const Profile = View({
             ]
         };
 
+        x.trends = [
+            {
+                hashTag: '#covid19',
+            },
+            {
+                hashTag: '#covidvaccines',
+            },
+            {
+                hashTag: '#globalwarming',
+            },
+            {
+                hashTag: '#bitcoin',
+            },
+            {
+                hashTag:  '#spiderman',
+            },
+            {
+                hashTag:  '#superman',
+            }
+        ];
+
         // assign data to view
         Profile.setData(x);
 

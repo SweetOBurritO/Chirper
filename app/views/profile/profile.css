@@ -6,18 +6,93 @@ section {
   padding: 50px 75px;
   width: 40vw;
   height: 80%;
-  display: flex;
+  /* display: flex;
   flex-direction: column;
-  flex: 2;
+  flex: 2; */
 
   position: absolute;
-  left: 485px;
+  left: 25%;
   top: 12%;
 
   background: #E4E4E4;
   border-radius: 30px 30px 0px 0px;
 
   overflow: scroll;
+}
+
+.trending-container {
+  min-width: 15vw;
+  max-width: 30vw;
+  max-height: 50%;
+
+  position: absolute;
+  right: 1vw;
+  top: 20vh;
+  background: #E4E4E4;
+  border-radius: 15px;
+  padding: 0 20px 35px;
+}
+
+#trendingTitle {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 36px;
+  line-height: 42px;
+  display: flex;
+  align-items: center;
+
+  color: #000000;
+
+  margin: 20px 0 10px;
+}
+
+.trending-tags {
+  border-bottom: 1px solid #C9C9C9;
+}
+
+.hashTag:hover {
+  background: #C9C9C9;
+  cursor: pointer;
+}
+
+.hashTag {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  color: #000000;
+}
+
+#show-more-trends {
+
+  width: 87%;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  display: flex;
+  align-items: center;
+
+  color: #FF476F;
+  position: absolute;
+  bottom: 0px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  border: none;
+  background-color: #E4E4E4;
+
+}
+
+#show-more-trends:hover {
+  background: #C9C9C9;
+  cursor: pointer;
 }
 
 .profileImage {
@@ -125,12 +200,21 @@ section {
   top: 320px;
 }
 
-.class-info {
+.count-info {
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
   line-height: 21px;
+}
+
+.follow-info:hover {
+  background: #C9C9C9;
+  cursor: pointer;
+}
+
+.follow-spacer {
+  min-width: 60px;
 }
 
 .count-info-key {
@@ -139,7 +223,7 @@ section {
 }
 
 .count-info-value {
-  margin: 20px 60px 5px 0;
+  margin: 20px 0 5px;
   color: #FF476F;
 }
 
@@ -158,7 +242,7 @@ section {
   align-items: center;
   text-align: center;
 
-color: #000000;
+  color: #000000;
 }
 
 #cheepsFeed {
