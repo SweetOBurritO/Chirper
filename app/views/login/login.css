@@ -1,0 +1,156 @@
+.login-page-container {
+	width: 100%;
+	float: left;
+	font-family: Arial, "Times New Roman";
+}
+
+.background {
+	width: 40%;
+	float: left;
+}
+.background-curve {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	z-index: -1;
+	float: left;
+}
+
+.landing-page-logo {
+	top: 35%;
+	width: 100%;
+	height: 323px;
+	z-index: -1;
+	float: left;
+	left: 0;
+}
+
+header {
+	width: 96%;
+	padding: 2%;
+	float: left;
+}
+
+.heading-text-container {
+	width: 100%;
+	height: 129px;
+	align-self: flex-start;
+	display: flex;
+	flex-direction: column;
+}
+
+.heading-text,
+.sub-heading-text {
+	color: var(--background);
+	font-style: normal;
+	font-weight: bold;
+}
+
+.heading-text {
+	font-size: 64px;
+	margin-bottom: 0;
+	margin-top: 0;
+	float: left;
+}
+
+.sub-heading-text {
+	font-size: 32px;
+	margin-left: 120px;
+	margin-top: 12px;
+	font-style: italic;
+}
+
+.login-content {
+	width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.call-to-action {
+	display: flex;
+	flex-direction: column;
+	width: 80%;
+	margin: 5%;
+}
+
+.call-to-action h1 {
+	margin-top: 0;
+	margin-bottom: 32px;
+	font-size: 64px;
+	display: flex;
+    flex-direction: column;
+    color: var(--primary);
+}
+.call-to-action p {
+	margin-top: 0;
+	font-size: 24px;
+}
+.button-outline {
+	width: 300px;
+	height: 50px;
+	border: 3px solid var(--primary);
+	box-sizing: border-box;
+	border-radius: 35px;
+	align-self: center;
+	font-size: 36px;
+	line-height: 42px;
+	color: var(--primary);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+    text-align: center;
+    margin: 5px;
+}
+
+.button-outline p {
+    margin: 0;
+    margin-left: 20px;
+    font-size: 24px;
+}
+
+.button-outline:hover {
+	color: var(--primary);
+	border: 9px solid var(--primary);
+	font-size: 38px;
+}
+.button-outline:active {
+	color: var(--background);
+	border: 8px solid var(--primary-hover);
+	background-color: var(--primary-hover);
+	font-size: 38px;
+}
+
+@media screen and (max-width: 1000px) {
+	.heading-text {
+		font-size: 40px;
+	}
+
+	.sub-heading-text {
+		font-size: 20px;
+	}
+
+	.login-text,
+	.sign-up-text {
+		font-size: 20px;
+	}
+
+	.background,
+	.login-content {
+		width: 100%;
+	}
+
+	.call-to-action {
+		width: 90%;
+		margin-top: 100px;
+		margin-left: 10%;
+	}
+	.call-to-action h1 {
+		font-size: 40px;
+	}
+	.call-to-action p {
+		margin-top: 0;
+		font-size: 28px;
+	}
+}

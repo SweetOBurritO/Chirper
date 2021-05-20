@@ -1,11 +1,28 @@
-class Cheep {
-  constructor(text, date, username, userImageUrl, _id = null) {
-    this.text = text;
-    this.date = date;
-    this.username = username;
-    this.userImageUrl = userImageUrl;
-    this._id = _id;
-  }
-}
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-module.exports = Cheep;
+const CheepSchema = new Schema({
+	title: {
+		type: String
+  },
+  text: {
+		type: String
+  },
+  date:{
+    type:Date
+  },
+  userDisplayName :{
+    type:String
+  },
+  username:{
+    type:String
+  },
+  userProfileImage:{
+    type:String
+  },
+  userID :{
+    type:String
+  }
+});
+
+module.exports = mongoose.model('Cheep', CheepSchema);
