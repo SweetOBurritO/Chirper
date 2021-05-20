@@ -7,6 +7,7 @@
   --secondary-4: #1e1712;
   --secondary-5: #0a0705;
   --background: #e5e5e5;
+  --background-body: #ffffff;
   --tab-color-selected: #ff476f;
   --tab-color-unselected: #000000;
 }
@@ -17,17 +18,61 @@ body {
 }
 
 .nav {
-  background-color: var(--background);
   top: 0;
   position: fixed;
   height: auto;
   width: 98%;
   padding: 1%;
+  background-color: var(--background-body);
+  z-index: 1;
 }
 
 .nav-container {
   width: 100%;
   float: left;
+}
+
+.nav-container_tabs {
+  display: block;
+}
+
+.responsive_menu_section,
+.responsive_menu_button {
+  width: 100%;
+  float: left;
+  display: none;
+}
+
+.responsive_menu_button {
+  width: 100%;
+  float: left;
+  display: none;
+}
+
+.responsive_menu_section a {
+  width: 96%;
+  float: left;
+  color: var(--background-body);
+  background-color: var(--tab-color-selected);
+  border-bottom: 1px solid var(--background-body);
+  padding: 2%;
+  text-align: center;
+  text-decoration: none;
+}
+
+.close_responsive_menu {
+  float: right;
+}
+
+.responsive_menu_button {
+  margin-top: 40px;
+  margin-left: 50px;
+  width: 10%;
+  float: left;
+  cursor: pointer;
+  padding: 2%;
+  font-size: 20px;
+  text-decoration: underline;
 }
 
 .nav h4 {
@@ -87,14 +132,94 @@ body {
   padding-top: 20px;
 }
 
-.nav a::selection {
-  color: var(--primary);
+.button_cheeps {
+  float: left;
+  margin-left: 100px;
+  height: 53.98147964477539px;
+  width: 237px;
+  left: 1294px;
+  margin-top: 30px;
+  border-radius: 35px;
+  border: 1px solid var(--tab-color-selected);
+  font-style: normal;
+  font-weight: normal;
+  font-size: 36px;
+  text-align: center;
+  background-color: var(--tab-color-selected);
+  color: var(--background-body);
+  cursor: pointer;
 }
-.nav a:hover {
-  text-decoration: underline;
+
+.button_cheeps:hover {
+  background-color: var(--background-body);
+  color: var(--tab-color-selected);
+  border: 1px solid var(--tab-color-selected);
 }
-.nav a:active {
-  color: var(--primary);
+
+#cheep_modal {
+  position: absolute;
+  width: 50%;
+  margin-left: 25%;
+  float: left;
+  top: 202px;
+  background: #ffffff;
+  border-radius: 36px;
+  display: none;
+}
+
+.cheep_modal_title,
+.cheep_modal_text_area {
+  width: 96%;
+  float: left;
+  border-bottom: 1px solid var(--tab-color-selected);
+  padding: 2%;
+}
+
+.cheep_modal_text_area {
+  border: none;
+}
+
+.cheep_modal_title input {
+  width: 85%;
+  float: left;
+  border: none;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 36px;
+  color: var(--primary-hover);
+}
+
+.cheep_modal_title input {
+  border: 0;
+  outline: 0;
+}
+.cheep_modal_title input:focus {
+  outline: none !important;
+}
+
+.cheep_modal_text_area textarea {
+  width: 100%;
+  float: left;
+  border: 0;
+  outline: 0;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 36px;
+  letter-spacing: 0em;
+}
+
+.cheep_modal_close {
+  width: 10%;
+  float: left;
+  text-align: right;
+  color: var(--tab-color-selected);
+  font-size: 36px;
+  cursor: pointer;
+}
+
+.cheep_modal_close:hover {
+  color: var(--primary-hover);
 }
 
 #app {
@@ -103,5 +228,31 @@ body {
   margin-top: 125px;
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 900px) {
+  #cheep_modal {
+    width: 90%;
+    margin-left: 5%;
+  }
+
+  .nav__link,
+  .nav-logo,
+  .button_cheeps {
+    margin-left: 0px;
+  }
+
+  .nav-container_tabs {
+    display: none;
+  }
+
+  .responsive_menu_button {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 1200px) and (min-width: 901px) {
+  .nav__link,
+  .nav-logo,
+  .button_cheeps {
+    margin-left: 20px;
+  }
 }

@@ -2,6 +2,10 @@
   display: none;
 }
 
+#cheep_modal {
+  display: none;
+}
+
 #app {
   margin-top: 0;
 }
