@@ -1,4 +1,5 @@
 import {View} from '../view.js';
+import { Cheep } from '../../components/cheep/cheep.js';
 import {Trends} from '../../components/trends/trends.js';
 
 export const Profile = View({
@@ -7,6 +8,7 @@ export const Profile = View({
     title: 'Profile',
 
     data: {
+        cheep: Cheep,
         trends: Trends,
         name: '',
         email: '',
@@ -61,14 +63,14 @@ export const Profile = View({
         // get user data from db
         // consider caching it and fetching from cache first
         let profileData = await Profile.methods.fetchProfileData(userId);
-        
+
         // userdata not found
         if (profileData == null) {
             window.getRouter().navigateTo('/home');
             return;
         }
 
-        // format date 
+        // format date
         profileData.dateOfBirth = profileData.dateOfBirth.slice(0, 10);
 
         // assign data to view

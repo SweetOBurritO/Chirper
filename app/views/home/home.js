@@ -11,8 +11,8 @@ export const Home = View({
     data: {
         cheep: Cheep,
         trends: Trends,
+        promptCheep: 'Cheep, Cheep!',
         props: []
-
     },
 
     async onLoad(){

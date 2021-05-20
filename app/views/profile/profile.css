@@ -1,17 +1,10 @@
-section {
-  display: flex;
-}
-
 .main-container {
-  padding: 50px 75px;
-  width: 40vw;
+  padding: 50px 20px;
+  width: 45%;
   height: 80%;
-  /* display: flex;
-  flex-direction: column;
-  flex: 2; */
 
   position: absolute;
-  left: 25%;
+  left: 15%;
   top: 12%;
 
   background: #E4E4E4;
@@ -20,7 +13,7 @@ section {
   overflow: scroll;
 }
 
-.profileImage {
+.mainProfileImage {
   border-radius: 20%;
   width: 150px;
   height: 150px;
@@ -36,9 +29,6 @@ section {
   font-weight: bold;
   font-size: 36px;
   line-height: 42px;
-  display: flex;
-  align-items: center;
-  text-align: center;
 
   color: #000000;
 }
@@ -54,10 +44,6 @@ section {
   font-size: 18px;
   line-height: 21px;
   /* identical to box height */
-
-  display: flex;
-  align-items: center;
-  text-align: center;
 
   color: #000000;
 }
@@ -82,10 +68,6 @@ section {
   font-size: 18px;
   line-height: 21px;
   /* identical to box height */
-
-  display: flex;
-  align-items: center;
-  text-align: center;
 
   color: #000000;
 }
@@ -113,10 +95,6 @@ section {
   line-height: 21px;
   /* identical to box height */
 
-  display: flex;
-  align-items: center;
-  text-align: center;
-
   color: #000000;
 }
 
@@ -138,8 +116,8 @@ section {
   cursor: pointer;
 }
 
-.follow-spacer {
-  min-width: 60px;
+.follow-info:first-child {
+  margin-right: 10vw;
 }
 
 .count-info-key {
@@ -163,14 +141,25 @@ section {
   line-height: 21px;
   /* identical to box height */
 
-  display: flex;
-  align-items: center;
-  text-align: center;
-
   color: #000000;
+}
+
+#cheepFeedHeader {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 36px;
+  line-height: 42px;
+
+  color: #FF476F;
+
+  position: absolute;
+  top: 390px;
+  left: 35%
 }
 
 #cheepsFeed {
   margin-top: 200px;
+  padding-top: 60px;
   border-top: 2px solid #C4C4C4;
 }

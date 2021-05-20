@@ -1,16 +1,14 @@
 <template id="template">
-  <article class="cheep-container">
-    <img class="cheep-profile-image" bind-src="imageSrc" />
-    <section class="cheep-content">
-      <header class="cheep-header">
-        <section>
-          <p class="cheep-user-handle" bind-content="handle"></p>
-          <h1 class="cheep-title" bind-content="heading"></h1>
-        </section>
-      </header>
-      <section>
-        <p class="cheep-message" bind-content="body"></p>
+  <article class="chirp-content">
+    <img src="" class="profileImage" bind-src="profileImage"/>
+    <header class="cheep-header">
+      <section class="cheep-text" bind-click="onClick">
+        <p class="cheep-by-handle" bind-content="handle"></p>
+        <h1 class="cheep-heading" bind-content="heading"></h1>
       </section>
+    </header>
+    <section class="cheep-text">
+      <p class="main-cheep-text" bind-content="body"></p>
     </section>
   </article>
 </template>
