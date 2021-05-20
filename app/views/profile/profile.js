@@ -1,4 +1,5 @@
 import {View} from '../view.js';
+import {Trends} from '../../components/trends/trends.js';
 
 export const Profile = View({
     path: '/views',
@@ -6,64 +7,72 @@ export const Profile = View({
     title: 'Profile',
 
     data: {
-        username: '',
-        userTag: '',
-        profileImage: '',
+        trends: Trends,
+        name: '',
+        email: '',
+        profilePicture: '',
         dateOfBirth: '',
         location: '',
-        userBio: '',
+        description: '',
         followerCount: 0,
         followingCount: 0,
         cheeps : []
     },
-
-    onLoad: ()  => {
+    methods : {
+        editProfile: () => {
+            window.getRouter().navigateTo('/settings');
+        },
+        fetchCurrentUserData: async () => {
+            let response = await fetch(`/api/users/current`);
+            let json = await response.json();
+            if (json.data != null) {
+                return json.data.result;
+            } else {
+                return null;
+            }
+        },
+        fetchProfileData: async (userId) => {
+            let response = await fetch(`/api/users/${userId}`);
+            let json = await response.json();
+            if (json.data != null) {
+                return json.data.result;
+            } else {
+                return null;
+            }
+        },
+    },
+    onLoad: async ()  => {
         // using user id in url
         let pathSplit = location.pathname.split('/');
         let userId = pathSplit[2];
-        let userIdParsed = Number.parseInt(userId, 10);
 
-        // if userId not a number, redirect to home
-        if (Number.isNaN(userIdParsed) || userIdParsed.toString() != userId) {
-            window.location.href = '/';
+        // TODO: get logged in users id from session? from cookie?
+        // Get users _id from db to test
+        // userId = '60a3816d45e9cb5f34374795';
+        let myData = await Profile.methods.fetchCurrentUserData();
+        let myId = myData._id;
+
+        // redirect to logged in users profile
+        if (userId == undefined) {
+            window.getRouter().navigateTo(`/profile/${myId}`);
+            return;
         }
 
         // get user data from db
-        let x = { 
-            username: 'User#'+userId,
-            userTag: '@dontAtMe'+userId,
-            profileImage: 'https://picsum.photos/id/'+userId+'/200',
-            dateOfBirth: new Date(2021 - userId, userId % 12, 1).toDateString(),
-            location: 'Chirper',
-            userBio: 'This is my user bIo.',
-            followerCount: 0,
-            followingCount: 12,
-            cheeps : [
-                {
-                    message: 'I personally think Chirper is better than Twitter.'
-                },
-                {
-                    message: 'ahh the pepeloni, pepeloni. you know the pepeloni?\n'+
-                            'the nooo one. i always, i always order the, the domino.\n'+
-                            'domino pepeloni and without pepeloni.\n\n'+
-                            'i always order the pepeloni and without pepeloni. pepeloni!\n'+
-                            'i like pepeloni, yeah. i always, i always order the, the cheese- cheese pan.\n'+
-                            'ahh how can i explain? i can explain by my drawing!\n'+
-                            'i always order like the cheese pan that it has cheese on here, this part, the ear.\n'+
-                            'ear of pizza. and then, i order- wh- when i order pepeloni, the ear-\n'+
-                            'it always have a pepeloni on h- on a top, but i pick up these... away!\n'+
-                            'cause i don\'t eat it. and then i eat the cheese pan pizza. okay?\n'+
-                            'you understand? understandable! pepeloni! yes.'
-                },
-                {
-                    message: 'Hi, I\'m new.'
-                }
-            ]
-        };
+        // consider caching it and fetching from cache first
+        let profileData = await Profile.methods.fetchProfileData(userId);
+        
+        // userdata not found
+        if (profileData == null) {
+            window.getRouter().navigateTo('/home');
+            return;
+        }
+
+        // format date 
+        profileData.dateOfBirth = profileData.dateOfBirth.slice(0, 10);
 
         // assign data to view
-        Profile.setData(x);
-        
+        Profile.setData(profileData);
     },
 
 });

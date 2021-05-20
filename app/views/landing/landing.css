@@ -10,35 +10,41 @@
   margin-top: 0;
 }
 
+.landing-page-container {
+  width: 100%;
+  float: left;
+  font-family: Arial, "Times New Roman";
+}
+
+.background {
+  width: 40%;
+  float: left;
+}
 .background-curve {
   position: absolute;
   top: 0;
   left: 0;
   height: 100%;
   z-index: -1;
+  float: left;
 }
 
 .landing-page-logo {
-  position: absolute;
   top: 35%;
-  left: 5.5%;
-  width: 458px;
+  width: 100%;
   height: 323px;
   z-index: -1;
+  float: left;
+  left: 0;
 }
 
 header {
-  width: 1564px;
-  height: 129px;
-  margin-left: 162px;
-  margin-top: 32px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-content: flex-start;
+  width: 96%;
+  padding: 2%;
+  float: left;
 }
 .heading-text-container {
-  width: 360px;
+  width: 100%;
   height: 129px;
   align-self: flex-start;
   display: flex;
@@ -56,31 +62,32 @@ header {
   font-size: 64px;
   margin-bottom: 0;
   margin-top: 0;
+  float: left;
 }
 
 .sub-heading-text {
   font-size: 32px;
   margin-left: 120px;
   margin-top: 12px;
+  font-style: italic;
 }
 
 .login-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  float: right;
   width: 270px;
-  height: 75px;
   z-index: 1;
 }
 .login-text,
 .sign-up-text {
   font-style: normal;
   font-size: 32px;
-  margin-top: 0px;
-  margin-bottom: 0px;
-  user-select: none;
+  width: 44%;
+  float: left;
 }
 
+.login-text {
+  margin-left: 8%;
+}
 .login-text:hover,
 .sign-up-text:hover {
   color: var(--primary);
@@ -94,20 +101,15 @@ header {
 }
 
 .landing-content {
-  position: absolute;
-  right: 0;
-  top: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 1240px;
-  height: 100vh;
+  width: 60%;
+  float: left;
 }
 
 .call-to-action {
   display: flex;
   flex-direction: column;
-  width: fit-content;
+  width: 80%;
+  margin: 5%;
 }
 
 .call-to-action h1 {
@@ -122,7 +124,7 @@ header {
   font-size: 48px;
 }
 .button-outline {
-  width: 350px;
+  width: 200px;
   height: 74px;
   border: 8px solid var(--primary);
   box-sizing: border-box;
@@ -147,4 +149,41 @@ header {
   border: 8px solid var(--primary-hover);
   background-color: var(--primary-hover);
   font-size: 38px;
+}
+
+@media screen and (max-width: 1000px) {
+  .heading-text {
+    font-size: 40px;
+  }
+
+  .sub-heading-text {
+    font-size: 20px;
+  }
+
+  .login-text,
+  .sign-up-text {
+    font-size: 20px;
+  }
+
+  .background,
+  .landing-content {
+    width: 100%;
+  }
+
+  .landing-content {
+    margin-top: -500px;
+  }
+
+  .call-to-action {
+    width: 90%;
+    margin-top: 100px;
+    margin-left: 10%;
+  }
+  .call-to-action h1 {
+    font-size: 40px;
+  }
+  .call-to-action p {
+    margin-top: 0;
+    font-size: 28px;
+  }
 }

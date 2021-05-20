@@ -1,12 +1,11 @@
 :root {
-  --primary: #e25e0d;
-  --primary-hover: #170a01;
-  --secondary-1: #ebe8e5;
-  --secondary-2: #9a8879;
-  --secondary-3: #55473d;
-  --secondary-4: #1e1712;
-  --secondary-5: #0a0705;
-  --background: #e5e5e5;
+  --primary: #ff476f;
+  --primary-hover: #ec4468;
+  --primary-text: #000000;
+  --secondary: #e5e5e5;
+  --secondary-2: #c4c4c4;
+  --secondary-3: #ffffff;
+  --background: #f0f0f0;
   --background-body: #ffffff;
   --tab-color-selected: #ff476f;
   --tab-color-unselected: #000000;
@@ -14,7 +13,7 @@
 
 body {
   background-color: var(--background);
-  font-family: Helvetica, sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 .nav {
@@ -271,4 +270,3 @@ body {
   .button_cheeps {
     margin-left: 20px;
   }
-}

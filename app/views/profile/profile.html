@@ -1,16 +1,39 @@
 <template id="template">
-  <main class="main-container">
-    <h1>PROFILE</h1>
-    <img src="" class="profileImage" bind-src="profileImage"/>
-    <h1 bind-content="username"></h3>
-    <h3 bind-content="userTag"></h3>
-    <h3 bind-content="dateOfBirth"></h3>
-    <h3 bind-content="location"></h3>
-    <h3 bind-content="userBio"></h3>
+  <section>
+    <main class="main-container">
+      <img src="" class="profileImage" bind-src="profilePicture"/>
 
-    <article bind-for="cheeps">
-      <h3 bind-content="username"></h3>
-      <pre for-value="message"></pre>
-    </article>
-  </main>
+      <h1 id="userName" bind-content="name"></h3>
+
+      <img src="/static/images/location-icon.svg" class="location-icon"/>
+      <h3 id="userLocation" bind-content="location"></h3>
+
+      <img src="/static/images/calendar-icon.svg" class="calendar-icon"/>
+      <h3 id="userDateOfBirth" bind-content="dateOfBirth"></h3>
+
+      <h3 id="userBio" bind-content="description"></h3>
+
+      <section id="follow-info">
+        <span class="follow-info">
+          <span class="count-info-key count-info">Followers</span>
+          <span class="count-info-value count-info" bind-content="followerCount"></span>
+        </span>
+        <span class="follow-spacer"></span>
+        <span class="follow-info">
+          <span class="count-info-key count-info">Following</span>
+          <span class="count-info-value count-info" bind-content="followingCount"></span>
+        </span>
+      </section>
+
+      <section id="cheepsFeed">
+        <article bind-for="cheeps">
+          <h3 bind-content="name"></h3>
+          <span for-value="message"></span>
+        </article>
+      </section>
+    </main>
+
+    <aside class="trending-container" bind-component="trends"></aside>
+
+  </section>
 </template>

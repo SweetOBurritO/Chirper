@@ -1,22 +1,35 @@
 import {View} from '../view.js';
 
+const pageData = {
+    register:{
+        title : 'Welcome to Chirper',
+        message:'Dont confuse us with twitter'
+    },
+    login:{
+        title : 'Good to see you again',
+        message:'We\'re still not twitter'
+    }
+};
+
 export const Login = View({
     path: '/views',
     name: 'login',
     title: 'Login',
 
     data: {
-        title: ''
+        title: '',
+        message:''
     },
     onLoad : ()=>{
-        let title = 'Log in';
+        let page = 'login';
 
         if (location.pathname ==='/register') {
-            title = 'Register';
+            page = 'register';
         }
 
         Login.setData({
-            title:title
+            title:pageData[page].title,
+            message:pageData[page].message
         });
     }
 });

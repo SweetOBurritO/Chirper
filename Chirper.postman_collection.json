@@ -8,18 +8,32 @@
 		{
 			"name": "Get All Cheeps",
 			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "addTokenTo",
+							"value": "queryParams",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/api/cheeps",
-					"protocol": "http",
+					"raw": "{{baseURL}}/api/cheeps?username=@realDonaldTrump",
 					"host": [
-						"localhost"
+						"{{baseURL}}"
 					],
-					"port": "3000",
 					"path": [
 						"api",
 						"cheeps"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "@realDonaldTrump"
+						}
 					]
 				}
 			},
@@ -31,16 +45,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/api/cheeps/609c26d25c88a431acfaf8d9",
-					"protocol": "http",
+					"raw": "{{baseURL}}/api/cheeps/60a2bbdf9dadb23a84e66975",
 					"host": [
-						"localhost"
+						"{{baseURL}}"
 					],
-					"port": "3000",
 					"path": [
 						"api",
 						"cheeps",
-						"609c26d25c88a431acfaf8d9"
+						"60a2bbdf9dadb23a84e66975"
 					]
 				}
 			},
@@ -62,34 +74,47 @@
 					"mode": "urlencoded",
 					"urlencoded": [
 						{
+							"key": "title",
+							"value": "Who needs twitter anyway",
+							"type": "text"
+						},
+						{
 							"key": "text",
-							"value": "Who needs twitter anyways! TWITTER IS FAKE NEWS",
+							"value": "Chirper is where its at! Theres no fake news here at all!",
 							"type": "text"
 						},
 						{
 							"key": "date",
-							"value": "2021-01-30",
+							"value": "2021-01-20",
+							"type": "text"
+						},
+						{
+							"key": "userDisplayName",
+							"value": "Donald Trump",
 							"type": "text"
 						},
 						{
 							"key": "username",
-							"value": "@DonaldTrump",
+							"value": "@realDonaldTrump",
 							"type": "text"
 						},
 						{
-							"key": "userImageUrl",
-							"value": "https://graphics.wsj.com/clinton-trump-twitter/img/trump.jpg",
+							"key": "userProfileImage",
+							"value": "https://i.dailymail.co.uk/i/pix/2015/12/30/16/2FAEDCED00000578-0-image-m-52_1451493776258.jpg",
+							"type": "text"
+						},
+						{
+							"key": "userID",
+							"value": "1",
 							"type": "text"
 						}
 					]
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/cheeps/",
-					"protocol": "http",
+					"raw": "{{baseURL}}/api/cheeps/",
 					"host": [
-						"localhost"
+						"{{baseURL}}"
 					],
-					"port": "3000",
 					"path": [
 						"api",
 						"cheeps",
@@ -104,17 +129,35 @@
 			"request": {
 				"method": "PUT",
 				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "text",
+							"value": "Changed text",
+							"type": "text"
+						},
+						{
+							"key": "date",
+							"value": "2021-01-30",
+							"type": "text"
+						},
+						{
+							"key": "title",
+							"value": "CHanged title",
+							"type": "text"
+						}
+					]
+				},
 				"url": {
-					"raw": "http://localhost:3000/api/cheeps/23",
-					"protocol": "http",
+					"raw": "{{baseURL}}/api/cheeps/60a2bb11a7167d2a2c3f245d",
 					"host": [
-						"localhost"
+						"{{baseURL}}"
 					],
-					"port": "3000",
 					"path": [
 						"api",
 						"cheeps",
-						"23"
+						"60a2bb11a7167d2a2c3f245d"
 					]
 				}
 			},
@@ -126,21 +169,29 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/api/cheeps/23",
-					"protocol": "http",
+					"raw": "{{baseURL}}/api/cheeps/60a2bb11a7167d2a2c3f245d",
 					"host": [
-						"localhost"
+						"{{baseURL}}"
 					],
-					"port": "3000",
 					"path": [
 						"api",
 						"cheeps",
-						"23"
+						"60a2bb11a7167d2a2c3f245d"
 					]
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Update User",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
 		}
-	],
-	"protocolProfileBehavior": {}
+	]
 }

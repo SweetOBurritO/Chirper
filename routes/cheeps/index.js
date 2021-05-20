@@ -23,8 +23,8 @@ cheeps.get('/:id', async (req, res) => {
 });
 
 cheeps.post('/', async (req, res) => {
-	const { text, date, username, userImageUrl } = req.body;
-	const cheep = new Cheep(text, date, username, userImageUrl);
+	const { title, text, date, userDisplayName, username, userProfileImage, userID } = req.body;
+	const cheep = new Cheep({title, text, date, userDisplayName, username, userProfileImage, userID});
 	const success = await cheepController.insert(cheep);
 	const response = new Response(statusCodes.success, { success: success }, null);
 
