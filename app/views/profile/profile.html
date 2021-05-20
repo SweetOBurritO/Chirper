@@ -1,7 +1,7 @@
 <template id="template">
   <section>
     <main class="main-container">
-      <img src="" class="mainProfileImage" bind-src="profileImage"/>
+      <img src="" class="mainProfileImage" bind-src="profilePicture"/>
 
       <h1 id="userName" bind-content="name"></h3>
 
@@ -23,8 +23,10 @@
           <span class="count-info-value count-info" bind-content="followingCount"></span>
         </span>
       </section>
-      <h1 id="cheepFeedHeader" bind-content="cheepFeedHeader">Home</h1>
-      <article id="cheepsFeed" bind-component="cheep" bind-props-list="props"></article>
+      <h1 id="cheepFeedHeader" bind-content="cheepFeedHeader">Your Cheeps:</h1>
+      <section id="cheepsFeed">
+        <article bind-component="cheep" bind-props-list="cheeps"></article>
+      </section>
     </main>
 
     <aside class="trending-container" bind-component="trends"></aside>
