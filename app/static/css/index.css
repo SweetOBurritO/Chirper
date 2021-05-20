@@ -180,6 +180,7 @@ body {
   background: #ffffff;
   border-radius: 36px;
   display: none;
+  z-index: 1;
 }
 
 .cheep_modal_title,
@@ -242,8 +243,12 @@ body {
   float: left;
   margin-top: 125px;
 }
+label {
+  width: 20%;
+  float: left;
+}
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1200px) {
   #cheep_modal {
     width: 90%;
     margin-left: 5%;
@@ -262,6 +267,11 @@ body {
   .responsive_menu_button {
     display: block;
   }
+
+  .responsive_menu_section,
+  #responsive_menu_section_id {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 1200px) and (min-width: 901px) {
@@ -270,3 +280,4 @@ body {
   .button_cheeps {
     margin-left: 20px;
   }
+}
