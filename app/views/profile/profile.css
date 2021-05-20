@@ -116,8 +116,8 @@
   cursor: pointer;
 }
 
-.follow-spacer {
-  min-width: 60px;
+.follow-info:first-child {
+  margin-right: 10vw;
 }
 
 .count-info-key {
