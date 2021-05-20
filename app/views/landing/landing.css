@@ -2,6 +2,10 @@
   display: none;
 }
 
+#app {
+  margin-top: 0;
+}
+
 .background-curve {
   position: absolute;
   top: 0;
