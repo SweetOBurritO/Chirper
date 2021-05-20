@@ -1,4 +1,5 @@
 import { Cheep } from '../../components/cheep/cheep.js';
+import {Trends} from '../../components/trends/trends.js';
 import {View} from '../view.js';
 
 
@@ -9,6 +10,7 @@ export const Home = View({
 
     data: {
         cheep: Cheep,
+        trends: Trends,
         props: [
             {
                 imageSrc: 'https://images.newrepublic.com/4aa3c4e7c6c23682dff17fd422749bcd840a822b.jpeg?w=1024&h=512&crop=faces&fit=crop&fm=jpg',
