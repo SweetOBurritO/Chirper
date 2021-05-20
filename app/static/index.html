@@ -150,44 +150,49 @@
     </script>
 
     <script>
-      tabs = ["home_id", "profile_id", "settings_id"];
+      tabs = {home:"home_id", profile:"profile_id", settings:"settings_id"};
 
       function navigateChange(
         page_id
       ) {
         
-          if (page_id == tabs[0]) {
-            document.getElementById(tabs[0]).src = "/static/images/home_selected.svg";
-            document.getElementById("label_" + page_id).style.color = "#FF476F";
+          switch (page_id) {
+            case tabs.home:{
+              document.getElementById(tabs.home).src = "/static/images/home_selected.svg";
+              document.getElementById("label_" + tabs.home).style.color = "#FF476F";
 
-            document.getElementById(tabs[1]).src = "/static/images/profile_unselected.svg";
-            document.getElementById("label_" + tabs[1]).style.color = "#000000";
+              document.getElementById(tabs.profile).src = "/static/images/profile_unselected.svg";
+              document.getElementById("label_" + tabs.profile).style.color = "#000000";
 
-            document.getElementById(tabs[2]).src = "/static/images/settings_unselected.svg";
-            document.getElementById("label_" + tabs[2]).style.color = "#000000";
+              document.getElementById(tabs.settings).src = "/static/images/settings_unselected.svg";
+              document.getElementById("label_" + tabs.settings).style.color = "#000000";
+            }break;
 
+            case tabs.profile:{
+              document.getElementById(tabs.home).src = "/static/images/home_unselected.svg";
+              document.getElementById("label_" + tabs.home).style.color = "#000000";
+
+              document.getElementById(tabs.profile).src = "/static/images/profile_selected.svg";
+              document.getElementById("label_" + tabs.profile).style.color = "#FF476F";
+
+              document.getElementById(tabs.settings).src = "/static/images/settings_unselected.svg";
+              document.getElementById("label_" + tabs.settings).style.color = "#000000";
+            }break;
+
+            case tabs.settings:{
+              document.getElementById(tabs.home).src = "/static/images/home_unselected.svg";
+              document.getElementById("label_" + tabs.home).style.color = "#000000";
+
+              document.getElementById(tabs.profile).src = "/static/images/profile_unselected.svg";
+              document.getElementById("label_" + tabs.profile).style.color = "#000000";
+
+              document.getElementById(tabs.settings).src = "/static/images/settings_selected.svg";
+              document.getElementById("label_" + tabs.settings).style.color = "#FF476F";
+            }break;
           }
-          else if(page_id == tabs[1]){
-            document.getElementById(tabs[0]).src = "/static/images/home_unselected.svg";
-            document.getElementById("label_" + tabs[0]).style.color = "#000000";
+            
 
-            document.getElementById(tabs[1]).src = "/static/images/profile_selected.svg";
-            document.getElementById("label_" + page_id).style.color = "#FF476F";
-
-            document.getElementById(tabs[2]).src = "/static/images/settings_unselected.svg";
-            document.getElementById("label_" + tabs[2]).style.color = "#000000";
-          }
-
-          else if(page_id == tabs[2]){
-            document.getElementById(tabs[0]).src = "/static/images/profile_unselected.svg";
-            document.getElementById("label_" + tabs[0]).style.color = "#000000";
-
-            document.getElementById(tabs[1]).src = "/static/images/home_unselected.svg";
-            document.getElementById("label_" + tabs[1]).style.color = "#000000";
-
-            document.getElementById(tabs[2]).src = "/static/images/settings_selected.svg";
-            document.getElementById("label_" + page_id).style.color = "#FF476F";
-          }
+         
 
            
           
