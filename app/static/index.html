@@ -19,9 +19,10 @@
         </a>
         <section class="nav-container_tabs">
           <a
-            onclick="navigateChange('home_id','/static/images/home_selected.svg','/static/images/profile_unselected.svg')"
+            onclick="navigateChange('home_id')"
             href="/home"
             class="nav__link"
+            src="/static/images/settings_selected.svg"
             data-link
           >
             <img
@@ -34,8 +35,8 @@
           </a>
 
           <a
-            onclick="navigateChange('profile_id','/static/images/profile_selected.svg','/static/images/home_unselected.svg')"
-            href="/settings"
+            onclick="navigateChange('profile_id')"
+            href="/profile"
             class="nav__link"
             data-link
           >
@@ -49,18 +50,20 @@
           </a>
 
           <a
-            onclick="navigateChange('settings_id','/static/images/profile_selected.svg','/static/images/home_unselected.svg')"
-            href="/profile"
+            onclick="navigateChange('settings_id')"
+            href="/settings"
             class="nav__link"
             data-link
           >
-            <img
-              id="settings_id"
-              class="nav-logo_1"
-              src="/static/images/profile_unselected.svg"
-              alt=""
-            />
-            <label id="label_settings_id"> Settings</label>
+            
+          <img
+          id="settings_id"
+          class="nav-logo_1"
+          src="/static/images/settings_unselected.svg"
+          alt=""
+        />
+
+        <label id="label_settings_id"> Settings</label>
           </a>
 
           <button
@@ -150,22 +153,49 @@
       tabs = ["home_id", "profile_id", "settings_id"];
 
       function navigateChange(
-        page_id,
-        image_source_selected,
-        image_source_unselected
+        page_id
       ) {
-        for (var i = 0; i < tabs.length; i++) {
-          if (page_id != tabs[i]) {
-            document.getElementById(tabs[i]).src = image_source_unselected;
+        
+          if (page_id == tabs[0]) {
+            document.getElementById(tabs[0]).src = "/static/images/home_selected.svg";
+            document.getElementById("label_" + page_id).style.color = "#FF476F";
 
-            document.getElementById("label_" + tabs[i]).style.color = "#000000";
+            document.getElementById(tabs[1]).src = "/static/images/profile_unselected.svg";
+            document.getElementById("label_" + tabs[1]).style.color = "#000000";
+
+            document.getElementById(tabs[2]).src = "/static/images/settings_unselected.svg";
+            document.getElementById("label_" + tabs[2]).style.color = "#000000";
+
+          }
+          else if(page_id == tabs[1]){
+            document.getElementById(tabs[0]).src = "/static/images/home_unselected.svg";
+            document.getElementById("label_" + tabs[0]).style.color = "#000000";
+
+            document.getElementById(tabs[1]).src = "/static/images/profile_selected.svg";
+            document.getElementById("label_" + page_id).style.color = "#FF476F";
+
+            document.getElementById(tabs[2]).src = "/static/images/settings_unselected.svg";
+            document.getElementById("label_" + tabs[2]).style.color = "#000000";
           }
 
-          document.getElementById(page_id).src = image_source_selected;
+          else if(page_id == tabs[2]){
+            document.getElementById(tabs[0]).src = "/static/images/profile_unselected.svg";
+            document.getElementById("label_" + tabs[0]).style.color = "#000000";
 
-          document.getElementById("label_" + page_id).style.color = "#FF476F";
-        }
+            document.getElementById(tabs[1]).src = "/static/images/home_unselected.svg";
+            document.getElementById("label_" + tabs[1]).style.color = "#000000";
+
+            document.getElementById(tabs[2]).src = "/static/images/settings_selected.svg";
+            document.getElementById("label_" + page_id).style.color = "#FF476F";
+          }
+
+           
+          
+
+         
       }
+
+     
 
       function cheepModalStatus(modal_status, open_id) {
         switch (modal_status) {
