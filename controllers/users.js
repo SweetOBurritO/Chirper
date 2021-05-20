@@ -1,24 +1,33 @@
 const { User } = require('../models');
+const mongoose = require('mongoose');
 
 class UserController {
 
     async update(id, updateValues) {
-        const {profilePicture, name, location,description} = updateValues;
         const user = await this.getByID(id);
 
-        user.profilePicture = profilePicture?? user.profilePicture;
-        user.name = name ?? user.name;
-        user.location = location ?? user.location;
-        user.description = description ?? user.description;
+        console.log(updateValues);
+        //console.log(user);
+
+        user.profilePicture = updateValues.profilePicture ?? user.profilePicture;
+        user.name = updateValues.name?? user.name;
+        user.location = updateValues.location ?? user.location;
+        user.description = updateValues.description ?? user.description;
+
+        //console.log(user);
 
         const result = await user.save();
 
         return !!result;
     }
-    async getByID(id) {
-        const user = User.findById(id);
 
-        return user;
+    async getByID(id) {
+        if (mongoose.Types.ObjectId.isValid(id)) {
+            const user = User.findById(id);
+
+            return user;
+        }
+        return null;
     }
 }
 

@@ -4,31 +4,40 @@ const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
     name: {
-        type: String
+        type: String,
+        default: ''
     },
     email:{
-        type:String
+        type:String,
+        default: ''
     },
     description :{
-        type:String
+        type:String,
+        default: ''
     },
     location:{
-        type:String
+        type:String,
+        default: ''
     },
     dateOfBirth : {
-        type:Date
+        type:Date,
+        default: Date.now()
     },
     profilePicture :{
-        type: String
+        type: String,
+        default: '/static/images/defaultProfileImage.jpg'
     },
     bannerPicture :{
-        type: String
+        type: String,
+        default: ''
     },
     followers :{
-        type:Array
+        type:Array,
+        default: []
     },
     following :{
-        type:Array
+        type:Array,
+        default: []
     },
     twitterID :{
         type:Number

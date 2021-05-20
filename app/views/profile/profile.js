@@ -8,76 +8,71 @@ export const Profile = View({
 
     data: {
         trends: Trends,
-        username: '',
-        userTag: '',
-        profileImage: '',
+        name: '',
+        email: '',
+        profilePicture: '',
         dateOfBirth: '',
         location: '',
-        userBio: '',
+        description: '',
         followerCount: 0,
         followingCount: 0,
         cheeps : []
     },
-
-    onLoad: ()  => {
+    methods : {
+        editProfile: () => {
+            window.getRouter().navigateTo('/settings');
+        },
+        fetchCurrentUserData: async () => {
+            let response = await fetch(`/api/users/current`);
+            let json = await response.json();
+            if (json.data != null) {
+                return json.data.result;
+            } else {
+                return null;
+            }
+        },
+        fetchProfileData: async (userId) => {
+            let response = await fetch(`/api/users/${userId}`);
+            let json = await response.json();
+            if (json.data != null) {
+                return json.data.result;
+            } else {
+                return null;
+            }
+        },
+    },
+    onLoad: async ()  => {
         // using user id in url
         let pathSplit = location.pathname.split('/');
         let userId = pathSplit[2];
-        let userIdParsed = Number.parseInt(userId, 10);
 
-        // if userId not a number, redirect to home
-        if (Number.isNaN(userIdParsed) || userIdParsed.toString() != userId) {
-            window.location.href = '/';
+        // TODO: get logged in users id from session? from cookie?
+        // Get users _id from db to test
+        // userId = '60a3816d45e9cb5f34374795';
+        let myData = await Profile.methods.fetchCurrentUserData();
+        let myId = myData._id;
+
+        // redirect to logged in users profile
+        if (userId == undefined) {
+            window.getRouter().navigateTo(`/profile/${myId}`);
+            return;
         }
 
         // get user data from db
-        let x = {
-            username: 'Super User'+userId,
-            userTag: '@sudo'+userId,
-            profileImage: 'https://picsum.photos/id/'+userId+'/200',
-            dateOfBirth: new Date(2021 - userId, userId % 12, 1).toDateString(),
-            location: 'Planet Earth',
-            userBio: 'This is my user bio. Recheeps are not endorsements! Recheep at your own discretion!',
-            followerCount: 0,
-            followingCount: 12,
-            cheeps : [
-                {
-                    message: 'I personally think Chirper is better than Twitter.'
-                },
-                {
-                    message: 'ahh the pepeloni, pepeloni. you know the pepeloni?\n'+
-                            'the nooo one. i always, i always order the, the domino.\n'+
-                            'domino pepeloni and without pepeloni.\n\n'+
-                            'i always order the pepeloni and without pepeloni. pepeloni!\n'+
-                            'i like pepeloni, yeah. i always, i always order the, the cheese- cheese pan.\n'+
-                            'ahh how can i explain? i can explain by my drawing!\n'+
-                            'i always order like the cheese pan that it has cheese on here, this part, the ear.\n'+
-                            'ear of pizza. and then, i order- wh- when i order pepeloni, the ear-\n'+
-                            'it always have a pepeloni on h- on a top, but i pick up these... away!\n'+
-                            'cause i don\'t eat it. and then i eat the cheese pan pizza. okay?\n'+
-                            'you understand? understandable! pepeloni! yes.'
-                },
-                {
-                    message: 'Hi, I\'m new.'
-                },
-                {
-                    message: 'Giga Berlin suppliers please accelerate!'
-                },
-                {
-                    message: 'Aiming for extreme precision with next gen Model Y – microns, not millimeters'
-                },
-                {
-                    message: 'Ambitious short-term goals like this are critical to moving closer to a net-zero future. As we rapidly scale the solutions we have, we must also invest in innovation to reach our ultimate goals. Thank you for your leadership.'
-                },
-                {
-                    message: 'The amount of cement China has consumed is a staggering statistic and reminder of how much emissions have grown in low- and middle-income countries. (Minecraft concrete doesn’t count, though server farms are responsible for a lot of emissions.)'
-                }
-            ]
-        };
+        // consider caching it and fetching from cache first
+        let profileData = await Profile.methods.fetchProfileData(userId);
+        
+        // userdata not found
+        if (profileData == null) {
+            window.getRouter().navigateTo('/home');
+            return;
+        }
+
+        // format date 
+        profileData.dateOfBirth = profileData.dateOfBirth.slice(0, 10);
 
         // assign data to view
-        Profile.setData(x);
-
+        Profile.setData(profileData);
     },
 
 });

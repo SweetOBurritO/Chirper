@@ -39,7 +39,7 @@ export const databinding = async (bindings, domModel, view) => {
         },
         {
             tag: 'bind-content',
-            bind:async (tag) => {
+            bind: async (tag) => {
                 domModel.querySelectorAll(`[${tag}]`).forEach(elem => {
                     const obs = bindings._data[elem.getAttribute(tag)];
                     elem.removeAttribute(tag);
@@ -59,7 +59,7 @@ export const databinding = async (bindings, domModel, view) => {
         },
         {
             tag : 'bind-click',
-            bind : async (tag) => {
+            bind: async (tag) => {
                 const bindMethod = (e) => {
                     if(e.target.matches(`[${tag}]`)){
                         const method = bindings._methods[e.target.getAttribute(tag)];
@@ -73,7 +73,7 @@ export const databinding = async (bindings, domModel, view) => {
         },
         {
             tag: 'bind-view',
-            bind:async (tag) => {
+            bind: async (tag) => {
                 domModel.querySelectorAll(`[${tag}]`).forEach(elem => {
                     const boundView = bindings._data[elem.getAttribute(tag)];
                     boundView.getHtml.value()
@@ -88,27 +88,25 @@ export const databinding = async (bindings, domModel, view) => {
         },
         {
             tag: 'bind-if',
-            bind:async (tag) => {
+            bind: async (tag) => {
                 domModel.querySelectorAll(`[${tag}]`).forEach(elem => {
                     const obs = bindings._data[elem.getAttribute(tag)];
                     const cloneNode = elem.cloneNode(true);
-                    if(!obs.value){
+                    if (!obs.value){
                         elem.innerHTML = '';
                     }
-
                     elem.removeAttribute(tag);
                     obs.subscribe(()=> {
-                        if(!obs.value){
+                        if (!obs.value) {
                             elem.innerHTML = '';
                         }
-                        else
-                        {
+                        else {
                             elem.appendChild(cloneNode);
                         }
                     });
-                });
-
+                })
             }
+                
         },
         {
             tag: 'bind-component',
@@ -143,8 +141,18 @@ export const databinding = async (bindings, domModel, view) => {
             }
         },
         {
+            tag: 'bind-input',
+            bind: async (tag) => {
+                domModel.querySelectorAll(`[${tag}]`).forEach(elem => {
+                    const obs = bindings._data[elem.getAttribute(tag)];
+                    elem.removeAttribute(tag);
+                    bindInput(elem, obs);
+                });
+            }
+        },
+        {
             tag: 'bind-attribute',
-            bind:async (tag) => {
+            bind: async (tag) => {
                 domModel.querySelectorAll(`[${tag}]`).forEach(elem => {
                     const attributeName = elem.getAttribute(tag);
                     const attributeValue = bindings._data[elem.getAttribute('attribute-value')];
@@ -185,9 +193,18 @@ export const databinding = async (bindings, domModel, view) => {
         observable.subscribe(() => elem.src = observable.value);
     };
 
+    const bindInput = (elem, observable) => {
+        if (observable === undefined) {
+            return;
+        }
+
+        elem.value = observable.value;
+        observable.subscribe(() => elem.value = observable.value);
+    };
+
     const applyBindings = async () => {
-      const bindingPromises =  bindingTags.map( (binding) => {
-            return binding.bind(binding.tag);
+        const bindingPromises =  bindingTags.map( (binding) => {
+              return binding.bind(binding.tag);
       });
       await Promise.all(bindingPromises);
     };
