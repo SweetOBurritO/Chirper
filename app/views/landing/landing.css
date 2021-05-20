@@ -1,3 +1,15 @@
+#nav_id {
+  display: none;
+}
+
+#cheep_modal {
+  display: none;
+}
+
+#app {
+  margin-top: 0;
+}
+
 .landing-page-container {
   width: 100%;
   float: left;

@@ -4,4 +4,12 @@
     <article bind-component="cheep" bind-props-list="props"></article>
     <aside class="trending-container" bind-component="trends"></aside>
   </main>
+
+  <script>
+    navigateChange(
+      "home_id",
+      "/static/images/home_selected.svg",
+      "/static/images/profile_unselected.svg"
+    );
+  </script>
 </template>
