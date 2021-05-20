@@ -1,9 +1,9 @@
 <template id="template">
   <main class="main-container">
-    <h1>Home</h1>
+    <h1 id="promptCheep" bind-content="promptCheep">Home</h1>
     <article bind-component="cheep" bind-props-list="props"></article>
-    <aside class="trending-container" bind-component="trends"></aside>
   </main>
+  <aside class="trending-container" bind-component="trends"></aside>
 
   <script>
     navigateChange("home_id");

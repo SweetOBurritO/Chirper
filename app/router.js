@@ -64,6 +64,7 @@ export const Router = (initialRoutes) => {
         addRoute: (route) => {
             routes.push(route);
         },
-        navigateTo: navigateTo
+        navigateTo: navigateTo,
+        updateHtml
     };
 };
