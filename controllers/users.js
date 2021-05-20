@@ -1,4 +1,5 @@
 const { User } = require('../models');
+const mongoose = require('mongoose');
 
 class UserController {
 
@@ -16,9 +17,12 @@ class UserController {
         return !!result;
     }
     async getByID(id) {
-        const user = User.findById(id);
+        if (mongoose.Types.ObjectId.isValid(id)) {
+            const user = User.findById(id);
 
-        return user;
+            return user;
+        }
+        return null;
     }
 }
 
