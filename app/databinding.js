@@ -42,6 +42,16 @@ export const databinding = (bindings, domModel) => {
             }
         },
         {
+            tag: 'bind-input',
+            bind: (tag) => {
+                domModel.querySelectorAll(`[${tag}]`).forEach(elem => {
+                    const obs = bindings._data[elem.getAttribute(tag)];
+                    elem.removeAttribute(tag);
+                    bindInput(elem, obs);
+                });
+            }
+        },
+        {
             tag: 'bind-for',
             bind: (tag) => {
                 domModel.querySelectorAll(`[${tag}]`).forEach(elem => {
@@ -128,6 +138,15 @@ export const databinding = (bindings, domModel) => {
 
         elem.src = observable.value;
         observable.subscribe(() => elem.src = observable.value);
+    }
+
+    const bindInput = (elem, observable) => {
+        if (observable === undefined) {
+            return;
+        }
+
+        elem.value = observable.value;
+        observable.subscribe(() => elem.value = observable.value);
     }
 
     const applyBindings = () => {
