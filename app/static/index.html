@@ -94,7 +94,7 @@
     <section id="cheep_modal">
       <section class="cheep_modal_title">
         <form>
-        <input type="text" placeholder="A Cheep Title?" />
+        <input type="text" placeholder="A Cheep Title?" id="cheepTitle" />
         <section
           onclick="cheepModalStatus('close','cheepModal')"
           class="cheep_modal_close"
@@ -104,14 +104,47 @@
       </section>
 
       <section class="cheep_modal_text_area">
-        <textarea
-          rows="10"
-          placeholder="What would you like to say?"
-        ></textarea>
+        <textarea rows="10" placeholder="What would you like to say?" id="cheepText"></textarea>
       </section>
-      <input class="submit_button" type="submit" value="Cheep" />
+      <button class="submit_button" type="button" onclick="sendCheep();">Cheep</button>
     </form>
     </section>
+
+    <script>
+      const retrieveUserData = async () => {
+        const response = await fetch(`/api/users/current`);
+            const json = await response.json();
+            if (json.data != null) {
+                return json.data.result;
+            } else {
+                return null;
+            }
+      }
+
+      const sendCheep = async () => {
+        const userData = await retrieveUserData();
+
+        const title = document.getElementById("cheepTitle").value;
+        const text = document.getElementById("cheepText").value;
+        const date = Date.now();
+        const userDisplayName = userData.name;
+        const username = userData.name;
+        const userProfileImage = userData.profilePicture;
+        const userID = userData._id;
+
+        const cheepToSend = {title, text, date, userDisplayName, username, userProfileImage, userID};
+
+        await fetch(`/api/cheeps`, {
+            method: "POST",
+            body: JSON.stringify( cheepToSend ),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8'
+            }
+        });
+
+        cheepModalStatus('close', 'cheepModal');
+      };
+    </script>
 
     <script>
       tabs = ["home_id", "profile_id", "settings_id"];
@@ -126,13 +159,11 @@
             document.getElementById(tabs[i]).src = image_source_unselected;
 
             document.getElementById("label_" + tabs[i]).style.color = "#000000";
-            console.log("label_" + tabs[i]);
           }
 
           document.getElementById(page_id).src = image_source_selected;
 
           document.getElementById("label_" + page_id).style.color = "#FF476F";
-          console.log("label_" + page_id);
         }
       }
 

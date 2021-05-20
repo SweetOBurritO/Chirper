@@ -21,6 +21,7 @@ const sessionSecret = process.env.SESSION_SECRET;
 const apiRoutes = require('./routes');
 
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(session({ secret: sessionSecret, resave: true, saveUninitialized: false }));
 app.use(express.static('app')); app.use(middleware.loginHandler);
 

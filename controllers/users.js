@@ -6,15 +6,10 @@ class UserController {
     async update(id, updateValues) {
         const user = await this.getByID(id);
 
-        console.log(updateValues);
-        //console.log(user);
-
         user.profilePicture = updateValues.profilePicture ?? user.profilePicture;
         user.name = updateValues.name?? user.name;
         user.location = updateValues.location ?? user.location;
         user.description = updateValues.description ?? user.description;
-
-        //console.log(user);
 
         const result = await user.save();
 
