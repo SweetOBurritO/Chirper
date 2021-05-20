@@ -1,5 +1,5 @@
 import {View} from '../view.js';
-import {Trends} from '../trends/trends.js';
+import {Trends} from '../../components/trends/trends.js';
 
 export const Profile = View({
     path: '/views',
