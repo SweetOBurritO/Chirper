@@ -23,7 +23,6 @@ export const Router = (initialRoutes) => {
         }
 
         const newNode = await view.getHtml();
-        console.log(newNode);
         document.querySelector('#app').innerHTML = '';
         document.querySelector('#app').appendChild(newNode);
         document.querySelector('#view-styles').href = await view.getCssPath();
