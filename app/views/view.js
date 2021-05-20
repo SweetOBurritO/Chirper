@@ -51,7 +51,6 @@ export const View = (view) => {
         const domModel = await parser.parseFromString(html, 'text/html');
         const template = domModel.getElementsByTagName('template')[0];
         return template.content.cloneNode(true);
-
     };
 
     const setTitle =  () =>{
@@ -68,8 +67,12 @@ export const View = (view) => {
     }
 
     return {
+        fetchHtml: fetchHtml,
         setData: setData,
-        onLoad: async () => {
+        componentCss: [],
+
+        onLoad(){
+            this.componentCss = [];
             setTitle();
             if(view.onLoad === undefined)
                 return;
@@ -90,9 +93,10 @@ export const View = (view) => {
             return _methods;
         },
 
-        getHtml: async () => {
+        async getHtml(){
             const htmlDom = await fetchHtml(`/views/${view.name}/${view.name}.html`);
-            clearEventBindings = databinding({_data , _methods, view }, htmlDom);
+            clearEventBindings = await databinding({_data , _methods, view }, htmlDom, this);
+            this.componentCss.forEach(link => htmlDom.appendChild(link));
             return htmlDom;
         },
         getCssPath: async () => {

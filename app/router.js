@@ -6,7 +6,7 @@ export const Router = (initialRoutes) => {
     routes[0];
     let activeRoute = {};
 
-    const pathToRegex = path => new RegExp("^" + path.replace(/\//g, "\\/").replace(/:\w+/g, "(.+)") + "$");
+    const pathToRegex = path => new RegExp('^' + path.replace(/\//g, '\\/').replace(/:\w+/g, '(.+)') + '$');
 
     const getMatch = () => {
         return routes.find( route => location.pathname.match(pathToRegex(route.path)) != null ) || defaultRoute;
@@ -23,7 +23,6 @@ export const Router = (initialRoutes) => {
         }
 
         const newNode = await view.getHtml();
-
         document.querySelector('#app').innerHTML = '';
         document.querySelector('#app').appendChild(newNode);
         document.querySelector('#view-styles').href = await view.getCssPath();
@@ -42,7 +41,7 @@ export const Router = (initialRoutes) => {
         activeRoute.view && activeRoute.view.onExit();
         activeRoute = route;
 
-        await view.onLoad();
+        await view.onLoad.bind(view)();
         await updateHtml(view, route);
 
         if (location.pathname.match(pathToRegex(route.path)) == null) {

@@ -1,4 +1,4 @@
-export const databinding = (bindings, domModel) => {
+export const databinding = async (bindings, domModel, view) => {
     const eventBindings = [];
     const clearEventBindings = () => {
         eventBindings.forEach(eventArgs => {
@@ -7,53 +7,10 @@ export const databinding = (bindings, domModel) => {
     };
 
     const bindingTags = [
-        {
-            tag: 'bind-content',
-            bind: (tag) => {
-                domModel.querySelectorAll(`[${tag}]`).forEach(elem => {
-                    const obs = bindings._data[elem.getAttribute(tag)];
-                    elem.removeAttribute(tag);
-                    bindValue(elem, obs);
-                });
-            }
-        },
-        {
-            tag: 'bind-src',
-            bind: (tag) => {
-                domModel.querySelectorAll(`[${tag}]`).forEach(elem => {
-                    const obs = bindings._data[elem.getAttribute(tag)];
-                    elem.removeAttribute(tag);
-                    bindSource(elem, obs);
-                });
-            }
-        },
-        {
-            tag : 'bind-click',
-            bind : (tag) => {
-                const bindMethod = (e) => {
-                    if(e.target.matches(`[${tag}]`)){
-                        const method = bindings._methods[e.target.getAttribute(tag)];
-                        if(method !== undefined)
-                            method.bind(bindings.view)(e);
-                    }
-                };
-                document.body.addEventListener('click', bindMethod);
-                eventBindings.push( ['click', bindMethod] );
-            }
-        },
-        {
-            tag: 'bind-input',
-            bind: (tag) => {
-                domModel.querySelectorAll(`[${tag}]`).forEach(elem => {
-                    const obs = bindings._data[elem.getAttribute(tag)];
-                    elem.removeAttribute(tag);
-                    bindInput(elem, obs);
-                });
-            }
-        },
+
         {
             tag: 'bind-for',
-            bind: (tag) => {
+            bind: async (tag) => {
                 domModel.querySelectorAll(`[${tag}]`).forEach(elem => {
                     const values = bindings._data[elem.getAttribute(tag)];
 
@@ -81,11 +38,45 @@ export const databinding = (bindings, domModel) => {
             }
         },
         {
-            tag: 'bind-view',
-            bind: (tag) => {
+            tag: 'bind-content',
+            bind:async (tag) => {
                 domModel.querySelectorAll(`[${tag}]`).forEach(elem => {
-                    const view = bindings._data[elem.getAttribute(tag)];
-                    view.getHtml.value()
+                    const obs = bindings._data[elem.getAttribute(tag)];
+                    elem.removeAttribute(tag);
+                    bindValue(elem, obs);
+                });
+            }
+        },
+        {
+            tag: 'bind-src',
+            bind: async (tag) => {
+                domModel.querySelectorAll(`[${tag}]`).forEach(elem => {
+                    const obs = bindings._data[elem.getAttribute(tag)];
+                    elem.removeAttribute(tag);
+                    bindSource(elem, obs);
+                });
+            }
+        },
+        {
+            tag : 'bind-click',
+            bind : async (tag) => {
+                const bindMethod = (e) => {
+                    if(e.target.matches(`[${tag}]`)){
+                        const method = bindings._methods[e.target.getAttribute(tag)];
+                        if(method !== undefined)
+                            method.bind(bindings.view)(e);
+                    }
+                };
+                document.body.addEventListener('click', bindMethod);
+                eventBindings.push( ['click', bindMethod] );
+            }
+        },
+        {
+            tag: 'bind-view',
+            bind:async (tag) => {
+                domModel.querySelectorAll(`[${tag}]`).forEach(elem => {
+                    const boundView = bindings._data[elem.getAttribute(tag)];
+                    boundView.getHtml.value()
                     .then((res)=> {
                         elem.innerHTML = '';
                         elem.removeAttribute(tag);
@@ -97,7 +88,7 @@ export const databinding = (bindings, domModel) => {
         },
         {
             tag: 'bind-if',
-            bind: (tag) => {
+            bind:async (tag) => {
                 domModel.querySelectorAll(`[${tag}]`).forEach(elem => {
                     const obs = bindings._data[elem.getAttribute(tag)];
                     if(!obs.value){
@@ -108,6 +99,48 @@ export const databinding = (bindings, domModel) => {
                     elem.removeAttribute(tag);
                 });
 
+            }
+        },
+        {
+            tag: 'bind-component',
+            bind: async (tag) => {
+                const components = domModel.querySelectorAll(`[${tag}]`);
+                for(let i = 0; i < components.length; ++i)
+                {
+                    const elem = components[i];
+                    const component = bindings._data[elem.getAttribute(tag)];
+                    const propList = bindings._data[elem.getAttribute('bind-props-list')];
+                    const props = bindings._data[elem.getAttribute('bind-props')];
+                    const cssLink =  await component.getCss.value.call(component);
+                    view.componentCss.push(cssLink);
+
+                    if(propList === undefined || propList === null)
+                    {
+                        const htmlVal = await component.getHtml.value(props);
+                        elem.innerHTML = '';
+                        elem.removeAttribute(tag);
+                        elem.removeAttribute('bind-props');
+                        elem.appendChild(htmlVal);
+                        continue;
+                    }
+
+                    elem.removeAttribute('bind-props-list');
+                    propList.forEach( async propItem => {
+                        const htmlVal = await component.getHtml.value(propItem);
+                        elem.appendChild(htmlVal);
+                    });
+                }
+
+            }
+        },
+        {
+            tag: 'bind-input',
+            bind: (tag) => {
+                domModel.querySelectorAll(`[${tag}]`).forEach(elem => {
+                    const obs = bindings._data[elem.getAttribute(tag)];
+                    elem.removeAttribute(tag);
+                    bindInput(elem, obs);
+                });
             }
         }
 
@@ -129,7 +162,7 @@ export const databinding = (bindings, domModel) => {
 
         elem.href = observable.value;
         observable.subscribe(() => elem.href = observable.value);
-    }
+    };
 
     const bindSource = (elem, observable) => {
         if (observable === undefined) {
@@ -138,7 +171,7 @@ export const databinding = (bindings, domModel) => {
 
         elem.src = observable.value;
         observable.subscribe(() => elem.src = observable.value);
-    }
+    };
 
     const bindInput = (elem, observable) => {
         if (observable === undefined) {
@@ -147,15 +180,16 @@ export const databinding = (bindings, domModel) => {
 
         elem.value = observable.value;
         observable.subscribe(() => elem.value = observable.value);
-    }
-
-    const applyBindings = () => {
-        bindingTags.forEach( (binding) => {
-            binding.bind(binding.tag);
-      });
     };
 
-    applyBindings();
+    const applyBindings = async () => {
+        const bindingPromises =  bindingTags.map( (binding) => {
+              return binding.bind(binding.tag);
+      });
+      await Promise.all(bindingPromises);
+    };
+
+    await applyBindings();
 
     return clearEventBindings;
 };
