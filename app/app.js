@@ -21,6 +21,10 @@ const App = async () => {
 			view: Posts
 		},
 		{
+			path: '/profile',
+			view: Profile
+		},
+		{
 			path: '/profile/:id',
 			view: Profile
 		},

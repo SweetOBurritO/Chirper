@@ -6,12 +6,30 @@ export const Settings = View({
     title: 'Settings',
 
     data: {
-        heading: 'Hello World'
+        username: '',
+        userBio: '',
     },
-
     methods: {
-        ClickMe: ()=>{
+        saveChanges: async () => {
+            let newUsername = document.getElementById("username").value;
+            let newUserBio = document.getElementById("userBio").value;
+
+            // save data to db
+
+
+            // take user back to own profile
+            window.getRouter().navigateTo('/profile'); 
         }
-    }
+    },
+    onLoad: ()  => {
+        // get user data from db
+        let x = { 
+            username: 'User#0',
+            userBio: 'This is my user bIo.',
+        };
+
+        // assign data to view
+        Settings.setData(x);
+    },
 
 });

@@ -1,4 +1,13 @@
 <template id="template">
-  <div bind-click="ClickMe" class="main-container"></div>
-  <h1 bind-content="heading"></h1>
+  <main class="main-container">
+    <h1>Edit Profile</h1>
+    <form> <!-- action to backend user thingy?? -->
+      <label for="username">Username: </label>
+      <input id="username" bind-input="username" />
+      <label for="userBio">Bio: </label>
+      <input id="userBio" bind-input="userBio" />
+      <!-- and whatever else needs to change -->
+      <button type="button" bind-click="saveChanges">SAVE</button>
+    </form>
+  </main>
 </template>
