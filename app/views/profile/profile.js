@@ -14,23 +14,23 @@ export const Profile = View({
         description: '',
         followerCount: 0,
         followingCount: 0,
-        cheeps : [],
-        isOwnProfile: true,
-        notOwnProfile: false,
-        followButtonText: 'FOLLOW'
+        cheeps : []
     },
     methods : {
-        toggleFollowUser: () => {
-            let buttonText = (document.getElementById('toggleFollowButton').innerHTMl == 'FOLLOW' ? 'UNFOLLOW' : 'FOLLOW');
-            document.getElementById('toggleFollowButton').innerHTMl = buttonText;
-            Profile.setData({followButtonText: buttonText});
-            // update db
-        },
         editProfile: () => {
             window.getRouter().navigateTo('/settings');
         },
+        fetchCurrentUserData: async () => {
+            let response = await fetch(`/api/users/current`);
+            let json = await response.json();
+            if (json.data != null) {
+                return json.data.result;
+            } else {
+                return null;
+            }
+        },
         fetchProfileData: async (userId) => {
-            let response = await fetch(`/api/users/${userId}`)
+            let response = await fetch(`/api/users/${userId}`);
             let json = await response.json();
             if (json.data != null) {
                 return json.data.result;
@@ -47,7 +47,8 @@ export const Profile = View({
         // TODO: get logged in users id from session? from cookie?
         // Get users _id from db to test
         // userId = '60a3816d45e9cb5f34374795';
-        let myId = 0;
+        let myData = await Profile.methods.fetchCurrentUserData();
+        let myId = myData._id;
 
         // redirect to logged in users profile
         if (userId == undefined) {
@@ -68,22 +69,8 @@ export const Profile = View({
         // format date 
         profileData.dateOfBirth = profileData.dateOfBirth.slice(0, 10);
 
-        // check if profile is logged in users
-        let isOwnProfile = userId == myId;
-
-        // check if profile is followed by logged in user
-        let isFollowing = userId == 2;
-
-        let displayConfiguration = {
-            isOwnProfile: isOwnProfile,
-            notOwnProfile: !isOwnProfile,
-            followButtonText: isFollowing ? 'UNFOLLOW' : 'FOLLOW'
-        };
-
         // assign data to view
         Profile.setData(profileData);
-        Profile.setData(displayConfiguration);
-        
     },
 
 });

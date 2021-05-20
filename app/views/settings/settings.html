@@ -1,12 +1,19 @@
 <template id="template">
   <main class="main-container">
     <h1>Edit Profile</h1>
-    <form> <!-- action to backend user thingy?? -->
+    <form>
       <label for="username">Username: </label>
       <input id="username" bind-input="username" />
+      <br />
       <label for="userBio">Bio: </label>
       <input id="userBio" bind-input="userBio" />
-      <!-- and whatever else needs to change -->
+      <br />
+      <label for="userLocation">Location: </label>
+      <input id="userLocation" bind-input="userLocation" />
+      <br />
+      <label for="imageUrl">Profile image url: </label>
+      <input id="imageUrl" bind-input="imageUrl" />
+      <br />
       <button type="button" bind-click="saveChanges">SAVE</button>
     </form>
   </main>

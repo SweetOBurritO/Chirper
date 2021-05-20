@@ -23,6 +23,7 @@ router.get('/:id', async (req, res) => {
 
 router.put('/:id', async (req, res) => {
 	const { id } = req.params;
+    console.log(req.body);
 	const result = await controller.update(id, req.body);
 	const response = new Response(statusCodes.success, result, null);
 
