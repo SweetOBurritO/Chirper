@@ -1,4 +1,48 @@
+.cheep-container {
+  margin-top: 5%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 80%;
+  background-color: var(--secondary-3);
+  border-radius: 20px;
+  height: fit-content;
+  padding: 16px;
+}
+.cheep-profile-image {
+  margin-top: 2%;
+  width: 58px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+.cheep-content {
+  width: 72%;
+}
+
 .cheep-header {
-  width: 50vw;
-  background-color: lawngreen;
+  width: 447px;
+  display: flex;
+  flex-direction: column;
+}
+.cheep-user-handle {
+  margin-top: 2%;
+  display: flex;
+  flex-direction: row;
+  font-size: 14px;
+}
+
+.cheep-title {
+  margin-top: 2%;
+  font-weight: bold;
+  font-size: 36px;
+  line-height: 42px;
+  margin-bottom: 2%;
+}
+.cheep-message {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 27px;
 }

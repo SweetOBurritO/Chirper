@@ -27,4 +27,10 @@ export const Posts = View({
         ]
     },
 
+    methods:{
+        showMe(){
+
+        }
+    }
+
 });
