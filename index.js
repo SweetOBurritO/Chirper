@@ -5,13 +5,14 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const mongoose = require('mongoose');
 const middleware = require('./middleware');
+const Constants = require('./constants');
 
 if (process.env.NODE_ENV !== 'production') {
 	const dotenv = require('dotenv');
 	dotenv.config();
 }
 
-mongoose.connect(process.env.DB_URL, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
+mongoose.connect(Constants.Database.DB_URL, Constants.Database.DB_SETTINGS);
 
 const app = express();
 const devPort = 3000;
