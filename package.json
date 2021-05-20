@@ -7,7 +7,7 @@
     "start-dev": "cross-env DB_URL='mongodb://localhost:27017/dbChirper' NODE_ENV='development' nodemon index.js",
     "start": "node index.js",
     "test": "jest",
-    "lint": "eslint test",
+    "lint": "eslint ./",
     "validate": "npm run lint && npm run test"
   },
   "repository": {
