@@ -2,18 +2,51 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <link rel="icon" href="/static/images/logo.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Single Page App (Vanilla JS)</title>
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
+    <title>Chirper</title>
     <link rel="stylesheet" href="/static/css/index.css" />
     <link id="view-styles" rel="stylesheet" href="/static/css/index.css" />
   </head>
   <body>
-    <main id="app"></main>
+    <nav id="nav_id" class="nav">
+      <section class="nav-container">
+        <a class="nav-logo" data-link>
+          <img src="/static/images/logo.svg" alt="" />
+        </a>
+
+        <a
+          onclick="navigateChange('home_id')"
+          href="/home"
+          class="nav__link"
+          id="home_id"
+          data-link
+        >
+          <img
+            class="nav-logo_1"
+            src="/static/images/home_selected.svg"
+            alt=""
+          />
+          <label>Home</label>
+        </a>
+
+        <a
+          onclick="navigateChange('profile_id')"
+          href="/settings"
+          class="nav__link"
+          id="profile_id"
+          data-link
+        >
+          <img
+            class="nav-logo_1"
+            src="/static/images/profile_unselected.svg"
+            alt=""
+          />
+          <label> Profile</label>
+        </a>
+      </section>
+    </nav>
+    <div id="app"></div>
     <script type="module" src="/app.js"></script>
   </body>
 </html>

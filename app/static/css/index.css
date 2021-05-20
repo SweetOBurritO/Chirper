@@ -1,13 +1,113 @@
 :root {
-  --primary: #ff476f;
-  --primary-hover: #ec4468;
-  --primary-text: "#000000";
-  --secondary: #e5e5e5;
-  --secondary-2: "#c4c4c4";
-  --background: #f0f0f0;
+  --primary: #e25e0d;
+  --primary-hover: #170a01;
+  --secondary-1: #ebe8e5;
+  --secondary-2: #9a8879;
+  --secondary-3: #55473d;
+  --secondary-4: #1e1712;
+  --secondary-5: #0a0705;
+  --background: #e5e5e5;
+  --tab-color-selected: #ff476f;
+  --tab-color-unselected: #000000;
 }
 
 body {
+  display: flex;
+  justify-content: center;
   background-color: var(--background);
-  font-family: "Roboto", sans-serif;
+  color: var(--secondary-1);
+  font-family: Helvetica, sans-serif;
+  margin: 0;
+}
+
+.nav {
+  background-color: var(--background);
+  top: 0;
+  position: fixed;
+  height: auto;
+  width: 98%;
+  padding: 1%;
+}
+
+.nav-container {
+  width: 100%;
+  float: left;
+}
+
+.nav h4 {
+  text-align: center;
+}
+
+.nav-logo {
+  width: 98%;
+  height: auto;
+  border-radius: 20px;
+  padding: 1%;
+  float: left;
+}
+
+.nav-logo img,
+.nav__link img {
+  width: 60px;
+  height: 60px;
+  float: left;
+}
+
+.nav-logo img {
+  width: 200px;
+  height: 80px;
+}
+
+.nav__link,
+.nav-logo {
+  float: left;
+  width: 120px;
+  height: 70px;
+  padding: 20px;
+  text-align: center;
+  margin: 5px;
+  text-decoration: none;
+  margin-left: 100px;
+}
+
+#home_id {
+  color: var(--tab-color-selected);
+}
+
+#profile_id {
+  color: var(--tab-color-unselected);
+}
+
+.nav__link label {
+  cursor: pointer;
+  float: left;
+  width: 15px;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 42px;
+  letter-spacing: 0em;
+  text-align: left;
+  padding-top: 20px;
+}
+
+.nav a::selection {
+  color: var(--primary);
+}
+.nav a:hover {
+  text-decoration: underline;
+}
+.nav a:active {
+  color: var(--primary);
+}
+
+#app {
+  line-height: 1.5;
+  font-weight: 500;
+  width: 198%;
+  padding: 1%;
+  margin-top: 150px;
+}
+
+@media screen and (max-width: 400px) {
 }

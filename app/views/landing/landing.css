@@ -1,3 +1,7 @@
+#nav_id {
+  display: none;
+}
+
 .background-curve {
   position: absolute;
   top: 0;
