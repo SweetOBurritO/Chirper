@@ -4,14 +4,11 @@ section {
 
 .main-container {
   padding: 50px 75px;
-  width: 40vw;
+  width: 40%;
   height: 80%;
-  /* display: flex;
-  flex-direction: column;
-  flex: 2; */
 
   position: absolute;
-  left: 25%;
+  left: 15%;
   top: 12%;
 
   background: #E4E4E4;
@@ -36,9 +33,6 @@ section {
   font-weight: bold;
   font-size: 36px;
   line-height: 42px;
-  display: flex;
-  align-items: center;
-  text-align: center;
 
   color: #000000;
 }
@@ -54,10 +48,6 @@ section {
   font-size: 18px;
   line-height: 21px;
   /* identical to box height */
-
-  display: flex;
-  align-items: center;
-  text-align: center;
 
   color: #000000;
 }
@@ -82,10 +72,6 @@ section {
   font-size: 18px;
   line-height: 21px;
   /* identical to box height */
-
-  display: flex;
-  align-items: center;
-  text-align: center;
 
   color: #000000;
 }
@@ -112,10 +98,6 @@ section {
   font-size: 18px;
   line-height: 21px;
   /* identical to box height */
-
-  display: flex;
-  align-items: center;
-  text-align: center;
 
   color: #000000;
 }
@@ -162,10 +144,6 @@ section {
   font-size: 18px;
   line-height: 21px;
   /* identical to box height */
-
-  display: flex;
-  align-items: center;
-  text-align: center;
 
   color: #000000;
 }
