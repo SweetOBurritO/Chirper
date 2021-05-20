@@ -1,4 +1,4 @@
-<template id="template">
+<!-- <template id="template">
     <h1 bind-content="title"></h1>
     
     <form action="/api/auth/twitter">
@@ -7,4 +7,51 @@
     <form action="/api/auth/google">
         <button type="submit">Google</button>
     </form>
-</template>
+</template> -->
+
+<template id="template">
+    <section class="login-page-container">
+      <header>
+        <h1 class="heading-text">Chirper</h1>
+        <section class="heading-text-container">
+          <h2 class="sub-heading-text">Where it's at</h2>
+        </section>
+      </header>
+  
+      <section class="background">
+        <picture>
+          <img
+            class="background-curve"
+            alt="background curve"
+            src="/static/images/landing-background-curve.svg"
+          />
+        </picture>
+        <picture>
+          <img
+            class="landing-page-logo"
+            alt="chirper logo grey"
+            src="/static/images/logo-landing-grey.svg"
+          />
+        </picture>
+      </section>
+      <section class="login-content">
+        <section class="call-to-action">
+            <h1 bind-content="title"></h1>
+            <p bind-content="message"></p>
+            <form action="/api/auth/twitter">
+                <button class="button-outline twitter" type="submit">
+                    <i class="fa fa-twitter" style="font-size:24px"></i>
+                    <p>Twitter</p>
+                </button>
+            </form>
+            <form action="/api/auth/google">
+                <button class="button-outline" type="submit">
+                    <i class="fa fa-google" style="font-size:24px"></i>
+                    <p>Google</p>
+                </button>
+            </form>
+        </section>
+      </section>
+    </section>
+  </template>
+  
