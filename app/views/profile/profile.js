@@ -1,4 +1,5 @@
 import {View} from '../view.js';
+import {Trends} from '../../components/trends/trends.js';
 
 export const Profile = View({
     path: '/views',
@@ -6,6 +7,7 @@ export const Profile = View({
     title: 'Profile',
 
     data: {
+        trends: Trends,
         username: '',
         userTag: '',
         profileImage: '',
@@ -29,13 +31,13 @@ export const Profile = View({
         }
 
         // get user data from db
-        let x = { 
-            username: 'User#'+userId,
-            userTag: '@dontAtMe'+userId,
+        let x = {
+            username: 'Super User'+userId,
+            userTag: '@sudo'+userId,
             profileImage: 'https://picsum.photos/id/'+userId+'/200',
             dateOfBirth: new Date(2021 - userId, userId % 12, 1).toDateString(),
-            location: 'Chirper',
-            userBio: 'This is my user bIo.',
+            location: 'Planet Earth',
+            userBio: 'This is my user bio. Recheeps are not endorsements! Recheep at your own discretion!',
             followerCount: 0,
             followingCount: 12,
             cheeps : [
@@ -57,13 +59,25 @@ export const Profile = View({
                 },
                 {
                     message: 'Hi, I\'m new.'
+                },
+                {
+                    message: 'Giga Berlin suppliers please accelerate!'
+                },
+                {
+                    message: 'Aiming for extreme precision with next gen Model Y – microns, not millimeters'
+                },
+                {
+                    message: 'Ambitious short-term goals like this are critical to moving closer to a net-zero future. As we rapidly scale the solutions we have, we must also invest in innovation to reach our ultimate goals. Thank you for your leadership.'
+                },
+                {
+                    message: 'The amount of cement China has consumed is a staggering statistic and reminder of how much emissions have grown in low- and middle-income countries. (Minecraft concrete doesn’t count, though server farms are responsible for a lot of emissions.)'
                 }
             ]
         };
 
         // assign data to view
         Profile.setData(x);
-        
+
     },
 
 });

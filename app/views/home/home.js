@@ -1,4 +1,5 @@
 import { Cheep } from '../../components/cheep/cheep.js';
+import {Trends} from '../../components/trends/trends.js';
 import {View} from '../view.js';
 
 
@@ -9,6 +10,7 @@ export const Home = View({
 
     data: {
         cheep: Cheep,
+        trends: Trends,
         props: [
             {
                 handle: '@realDonaldTrump',

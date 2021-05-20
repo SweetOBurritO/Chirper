@@ -1,0 +1,74 @@
+.trending-container {
+  min-width: 15vw;
+  max-width: 30vw;
+  max-height: 50%;
+
+  position: absolute;
+  right: 1vw;
+  top: 20vh;
+  background: #E4E4E4;
+  border-radius: 15px;
+  padding: 0 20px 35px;
+}
+
+#trendingTitle {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 36px;
+  line-height: 42px;
+  display: flex;
+  align-items: center;
+
+  color: #000000;
+
+  margin: 20px 0 10px;
+}
+
+.trending-tags {
+  border-bottom: 1px solid #C9C9C9;
+}
+
+.hashTag:hover {
+  background: #C9C9C9;
+  cursor: pointer;
+}
+
+.hashTag {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  color: #000000;
+}
+
+#show-more-trends {
+
+  width: 87%;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  display: flex;
+  align-items: center;
+
+  color: #FF476F;
+  position: absolute;
+  bottom: 0px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  border: none;
+  background-color: #E4E4E4;
+
+}
+
+#show-more-trends:hover {
+  background: #C9C9C9;
+  cursor: pointer;
+}
