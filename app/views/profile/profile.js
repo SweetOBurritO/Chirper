@@ -1,4 +1,5 @@
 import {View} from '../view.js';
+import {Trends} from '../trends/trends.js';
 
 export const Profile = View({
     path: '/views',
@@ -6,6 +7,7 @@ export const Profile = View({
     title: 'Profile',
 
     data: {
+        trends: Trends,
         username: '',
         userTag: '',
         profileImage: '',
@@ -72,27 +74,6 @@ export const Profile = View({
                 }
             ]
         };
-
-        x.trends = [
-            {
-                hashTag: '#covid19',
-            },
-            {
-                hashTag: '#covidvaccines',
-            },
-            {
-                hashTag: '#globalwarming',
-            },
-            {
-                hashTag: '#bitcoin',
-            },
-            {
-                hashTag:  '#spiderman',
-            },
-            {
-                hashTag:  '#superman',
-            }
-        ];
 
         // assign data to view
         Profile.setData(x);
