@@ -16,36 +16,60 @@
         </a>
 
         <a
-          onclick="navigateChange('home_id')"
+          onclick="navigateChange('home_id','/static/images/home_selected.svg','/static/images/profile_unselected.svg')"
           href="/home"
           class="nav__link"
-          id="home_id"
           data-link
         >
           <img
             class="nav-logo_1"
+            id="home_id"
             src="/static/images/home_selected.svg"
             alt=""
           />
-          <label>Home</label>
+          <label id="label_home_id">Home</label>
         </a>
 
         <a
-          onclick="navigateChange('profile_id')"
+          onclick="navigateChange('profile_id','/static/images/profile_selected.svg','/static/images/home_unselected.svg')"
           href="/settings"
           class="nav__link"
-          id="profile_id"
           data-link
         >
           <img
+            id="profile_id"
             class="nav-logo_1"
             src="/static/images/profile_unselected.svg"
             alt=""
           />
-          <label> Profile</label>
+          <label id="label_profile_id"> Profile</label>
         </a>
       </section>
     </nav>
+
+    <script>
+      tabs = ["home_id", "profile_id"];
+
+      function navigateChange(
+        page_id,
+        image_source_selected,
+        image_source_unselected
+      ) {
+        for (var i = 0; i < tabs.length; i++) {
+          if (page_id != tabs[i]) {
+            document.getElementById(tabs[i]).src = image_source_unselected;
+
+            document.getElementById("label_" + tabs[i]).style.color = "#000000";
+            console.log("label_" + tabs[i]);
+          }
+
+          document.getElementById(page_id).src = image_source_selected;
+
+          document.getElementById("label_" + page_id).style.color = "#FF476F";
+          console.log("label_" + page_id);
+        }
+      }
+    </script>
     <div id="app"></div>
     <script type="module" src="/app.js"></script>
   </body>

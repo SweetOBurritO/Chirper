@@ -1,4 +1,12 @@
 <template id="template">
   <div bind-click="ClickMe" class="main-container"></div>
   <h1 bind-content="heading"></h1>
+
+  <script>
+    navigateChange(
+      "profile_id",
+      "/static/images/profile_selected.svg",
+      "/static/images/home_unselected.svg"
+    );
+  </script>
 </template>
