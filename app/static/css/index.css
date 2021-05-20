@@ -1,9 +1,10 @@
 :root {
   --primary: #ff476f;
   --primary-hover: #ec4468;
-  --primary-text: "#000000";
+  --primary-text: #000000;
   --secondary: #e5e5e5;
-  --secondary-2: "#c4c4c4";
+  --secondary-2: #c4c4c4;
+  --secondary-3: #ffffff;
   --background: #f0f0f0;
 }
 

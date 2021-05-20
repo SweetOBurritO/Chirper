@@ -91,12 +91,21 @@ export const databinding = async (bindings, domModel, view) => {
             bind:async (tag) => {
                 domModel.querySelectorAll(`[${tag}]`).forEach(elem => {
                     const obs = bindings._data[elem.getAttribute(tag)];
+                    const cloneNode = elem.cloneNode(true);
                     if(!obs.value){
-                        elem.remove();
-                        return;
+                        elem.innerHTML = '';
                     }
 
                     elem.removeAttribute(tag);
+                    obs.subscribe(()=> {
+                        if(!obs.value){
+                            elem.innerHTML = '';
+                        }
+                        else
+                        {
+                            elem.appendChild(cloneNode);
+                        }
+                    });
                 });
 
             }
@@ -132,7 +141,20 @@ export const databinding = async (bindings, domModel, view) => {
                 }
 
             }
-        }
+        },
+        {
+            tag: 'bind-attribute',
+            bind:async (tag) => {
+                domModel.querySelectorAll(`[${tag}]`).forEach(elem => {
+                    const attributeName = elem.getAttribute(tag);
+                    const attributeValue = bindings._data[elem.getAttribute('attribute-value')];
+                    elem.setAttribute(attributeName,attributeValue);
+                    elem.removeAttribute(tag);
+                    elem.removeAttribute('attribute-value');
+                    elem.removeAttribute(tag);
+                });
+            }
+        },
 
     ];
 
