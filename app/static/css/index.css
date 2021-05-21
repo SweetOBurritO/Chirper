@@ -24,6 +24,7 @@ body {
   padding: 1%;
   background-color: var(--background-body);
   z-index: 1;
+  margin-bottom: 10px;
 }
 
 .nav-container {
