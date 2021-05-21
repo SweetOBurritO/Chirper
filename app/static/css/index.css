@@ -22,7 +22,7 @@ body {
   height: 5%;
   width: 98%;
   padding: 1%;
-  background-color: #E4E4E4;
+  background-color: transparent;
   z-index: 1;
   margin-bottom: 10px;
 }
